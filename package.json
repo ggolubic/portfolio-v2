@@ -14,12 +14,27 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "gatsby": "^2.24.67",
+    "babel-plugin-styled-components": "^1.11.1",
+    "fontsource-epilogue": "^3.0.9",
+    "fontsource-secular-one": "^3.0.3",
+    "fontsource-trocchi": "^3.0.3",
+    "gatsby": "^2.25.0",
+    "gatsby-image": "^2.4.21",
+    "gatsby-plugin-sharp": "^2.6.42",
+    "gatsby-plugin-styled-components": "^3.3.14",
+    "gatsby-source-filesystem": "^2.3.34",
+    "gatsby-transformer-sharp": "^2.5.17",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.11.0",
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "prettier": "2.1.2"
+    "gatsby-plugin-root-import": "^2.0.5",
+    "eslint": "^7.11.0",
+    "prettier": "2.1.2",
+    "eslint-config-prettier": "6.12.0",
+    "eslint-plugin-prettier": "3.1.4"
   },
   "repository": {
     "type": "git",

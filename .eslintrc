@@ -1,0 +1,24 @@
+{
+    "extends": [
+        "plugin:prettier/recommended",
+        "prettier/react"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+        "prettier/prettier":"error",
+        "no-unexpected-multiline":"error",
+        "no-undef":"error",
+        "no-unused-vars":"error"
+    },
+    "prettier/prettier": [
+        "error",
+        {
+            "endOfLine": "auto"
+        }
+    ],
+    "settings": {
+        "react":{
+            "version":"detect"
+        }
+    }
+}
