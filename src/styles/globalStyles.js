@@ -14,6 +14,11 @@ a {
 p {
     margin:0;
     color:inherit;
+};
+
+* {
+  margin: 0;
+  padding: 0;
 }`;
 
 export default GlobalStyles;

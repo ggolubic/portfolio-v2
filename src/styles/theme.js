@@ -5,6 +5,7 @@ import 'fontsource-trocchi';
 const theme = {
   fonts: {
     primaryFontColor: '#232320',
+    secondaryFontColor: '#656270',
     primaryFontFamily: 'Epilogue',
     primaryFontFamily2: 'Secular One',
     primaryFontFamily3: 'Trocchi',

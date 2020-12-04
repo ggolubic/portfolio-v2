@@ -7,13 +7,13 @@ const Social = () => {
   return (
     <SocialContainer>
       <IconContainer href="#" type="linkedin">
-        <FaLinkedinIn size="3em" />
+        <FaLinkedinIn />
       </IconContainer>
       <IconContainer href="#" type="github">
-        <FaGithub size="3em" />
+        <FaGithub />
       </IconContainer>
       <IconContainer href="#" type="ig">
-        <FaInstagram size="3em" />
+        <FaInstagram />
       </IconContainer>
     </SocialContainer>
   );
