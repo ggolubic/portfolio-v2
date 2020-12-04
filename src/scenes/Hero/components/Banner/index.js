@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 
 import { device } from 'src/consts/device.js';
 import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
@@ -9,23 +10,24 @@ const Name = styled.span`
 `;
 
 const HeroWrapper = styled.div`
+  max-width: 90%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  max-width: 90%;
+  align-items: center;
   margin: 0 auto;
+  > div {
+    width: 100%;
+  }
 
-  & > svg {
-    color: ${({ theme }) => theme.colors.turqoise};
+  & > div > svg {
     width: 90%;
     height: auto;
+    transform: scale(1.2);
   }
   @media ${device.laptop} {
     flex-direction: row;
+    margin-right: 50px;
     margin-top: 0;
-    > svg {
-      width: 40%;
-    }
   }
 `;
 
@@ -33,7 +35,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-
+  z-index: 5;
   @media ${device.laptop} {
     text-align: left;
   }
@@ -44,6 +46,7 @@ const ShortDescription = styled.p`
   max-width: 700px;
   line-height: 2;
   margin-top: 15px;
+  z-index: 5;
   @media ${device.tablet} {
     font-size: 1.5em;
   }
@@ -70,20 +73,36 @@ const Headline = styled.h1`
 //https://gatsby-simplefolio.netlify.app/
 //https://github.com/cobidev/gatsby-simplefolio/blob/master/src/components/Hero/Hero.jsx
 const Banner = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth > 769) {
+      setIsDesktop(true);
+      setIsMobile(false);
+    } else {
+      setIsMobile(true);
+      setIsDesktop(false);
+    }
+  }, []);
   return (
     <HeroWrapper>
-      <Wrapper>
-        <Headline>
-          Hi. I'm <Name>Gabrijel.</Name>
-          <br />
-          Web developer.
-        </Headline>
-        <ShortDescription>
-          I also like playing with CI/CD stuff and contribute to Open Source when I find something
-          interesting.
-        </ShortDescription>
-      </Wrapper>
-      <ComplexDashboardSvg />
+      <Fade bottom={true} duration={1000} delay={500} distance="30px">
+        <Wrapper>
+          <Headline>
+            Hi. I'm <Name>Gabrijel.</Name>
+            <br />
+            Web developer.
+          </Headline>
+          <ShortDescription>
+            I also like playing with CI/CD stuff and contribute to Open Source when I find something
+            interesting.
+          </ShortDescription>
+        </Wrapper>
+      </Fade>
+      <Fade bottom={true} duration={1000} delay={1000} distance="30px">
+        <ComplexDashboardSvg />
+      </Fade>
     </HeroWrapper>
   );
 };

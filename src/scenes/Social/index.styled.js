@@ -2,14 +2,16 @@ import styled from 'styled-components';
 import { device } from 'src/consts/device.js';
 
 export const SocialContainer = styled.div`
-  position: absolute;
+  position: sticky;
   bottom: 2.5%;
-  right: 2em;
+  margin: 0 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 0.2s;
   @media ${device.laptop} {
     bottom: 10%;
+    margin: 0 95%;
   }
 `;
 
