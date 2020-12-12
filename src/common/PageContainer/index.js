@@ -1,10 +1,17 @@
 import styled from 'styled-components';
+import { device } from 'consts/device';
 
 export const PageContainer = styled.section`
   display: flex;
   justify-content: center;
-  align-items: ${({ align }) => align || 'center'};
   flex-direction: ${({ direction }) => direction || 'row'};
-  min-height: 100vh;
+  min-height: 85vh;
+  /* max-height: 100vh; */
   background-color: ${({ theme }) => theme.colors.background};
+  padding-top: 10%;
+  @media ${device.tablet} {
+    min-height: 100vh;
+    align-items: ${({ align }) => align || 'center'};
+    padding-top: 0px;
+  }
 `;

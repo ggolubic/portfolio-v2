@@ -4,13 +4,15 @@ import { device } from 'src/consts/device.js';
 export const SocialContainer = styled.div`
   position: sticky;
   bottom: 2.5%;
-  margin: 0 90%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   transition: 0.2s;
-  @media ${device.laptop} {
+  justify-content: space-evenly;
+
+  @media ${device.tablet} {
+    flex-direction: column;
     bottom: 10%;
+    /* margin: 0 90%; */
     margin: 0 95%;
   }
 `;

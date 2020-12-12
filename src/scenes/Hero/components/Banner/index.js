@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
@@ -26,8 +26,7 @@ const HeroWrapper = styled.div`
   }
   @media ${device.laptop} {
     flex-direction: row;
-    margin-right: 50px;
-    margin-top: 0;
+    width: 90%;
   }
 `;
 
@@ -73,24 +72,12 @@ const Headline = styled.h1`
 //https://gatsby-simplefolio.netlify.app/
 //https://github.com/cobidev/gatsby-simplefolio/blob/master/src/components/Hero/Hero.jsx
 const Banner = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (window.innerWidth > 769) {
-      setIsDesktop(true);
-      setIsMobile(false);
-    } else {
-      setIsMobile(true);
-      setIsDesktop(false);
-    }
-  }, []);
   return (
     <HeroWrapper>
       <Fade bottom={true} duration={1000} delay={500} distance="30px">
         <Wrapper>
           <Headline>
-            Hi. I'm <Name>Gabrijel.</Name>
+            Hi, I'm <Name>Gabrijel.</Name>
             <br />
             Web developer.
           </Headline>

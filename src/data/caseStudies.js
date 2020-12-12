@@ -7,7 +7,7 @@ export default [
   },
   {
     name: 'Widget',
-    description: 'Embeddable tool for website that would like to sell flights',
+    description: 'Embeddable iframe for websites that would like to sell flights',
     imageUrl: '/images/widget.png',
     url: '/widget',
   },

@@ -21,8 +21,7 @@ const Content = styled.div`
 
 const Header = styled.h2`
   color: ${({ theme }) => theme.fonts.primaryFontColor};
-  margin: 0 auto 70px;
-  margin-bottom: 70px;
+  margin: 70px auto;
 
   @media ${device.tablet} {
     font-size: 2em;
@@ -152,7 +151,7 @@ const CaseStudies = () => {
         <CaseStudiesList>
           {caseStudiesData.map((caseStudy, i) => (
             <li key={i}>
-              <Fade bottom={true} duration={1000} delay={500 * i} distance="30px">
+              <Fade bottom={true} duration={1000} delay={300 * i} distance="30px">
                 <CaseStudyLink href={caseStudy.url} backgroundImage={caseStudy.imageUrl}>
                   <CaseStudyMask />
                   <CaseStudyText>

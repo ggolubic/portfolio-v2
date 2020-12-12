@@ -4,7 +4,8 @@ const GlobalStyles = createGlobalStyle`
 body {
     margin:0;
     font-size:13px;
-    font-family:${({ theme }) => theme.fonts.primaryFontFamily2}
+    font-family:${({ theme }) => theme.fonts.primaryFontFamily2};
+    font-display: swap;
 }
 
 a {
