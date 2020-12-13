@@ -6,7 +6,7 @@ import { device } from 'src/consts/device.js';
 import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
 
 const Name = styled.span`
-  color: ${({ theme }) => theme.colors.turqoise};
+  color: var(--primary-color);
 `;
 
 const HeroWrapper = styled.div`

@@ -48,7 +48,6 @@ const CaseStudiesList = styled.ul`
 
 const CaseStudyLink = styled.a`
   display: block;
-  /* background-image: url('https://partners.kiwi.com/wp-content/uploads/2018/11/tequila_logo_white@2x-copy.png'); */
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
   width: 80%;
   margin: 0 auto;
@@ -57,7 +56,6 @@ const CaseStudyLink = styled.a`
   background-color: #1c1d25;
   position: relative;
   box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.45);
-  /* background-position: 50%; */
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.35s ease;
@@ -86,7 +84,6 @@ const Title = styled.h3`
 `;
 const Description = styled.p`
   font-size: 1em;
-  /* font-weight: 300; */
   margin-bottom: 10px;
   @media ${device.tablet} {
     font-size: 1em;
@@ -99,11 +96,11 @@ const Description = styled.p`
 const CTA = styled.button`
   font-size: 1em;
   padding: 10px;
-  background-color: ${({ theme }) => theme.colors.turqoise};
+  background-color: var(--primary-color);
   color: white;
   border-radius: 5px;
   font-weight: 600;
-  border: ${({ theme }) => `1px solid ${theme.colors.turqoise}`};
+  border: 1px solid var(--primary-color);
   @media ${device.tablet} {
     font-size: 1em;
   }

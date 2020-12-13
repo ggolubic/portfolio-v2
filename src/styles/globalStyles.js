@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+:root{
+    --primary-color:'#00cdac',
+}
+
 body {
     margin:0;
     font-size:13px;
