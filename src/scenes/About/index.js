@@ -44,7 +44,7 @@ const Text = styled.p``;
 
 const About = () => {
   return (
-    <Section>
+    <Section id="about">
       <Container>
         <SectionTitle>About me</SectionTitle>
         <SectionContent>

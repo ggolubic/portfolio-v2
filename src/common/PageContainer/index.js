@@ -6,7 +6,6 @@ export const PageContainer = styled.section`
   justify-content: center;
   flex-direction: ${({ direction }) => direction || 'row'};
   min-height: 85vh;
-  /* max-height: 100vh; */
   background-color: ${({ theme }) => theme.colors.background};
   padding-top: 10%;
   @media ${device.tablet} {

@@ -142,7 +142,7 @@ const CaseStudyText = styled.div`
 
 const CaseStudies = () => {
   return (
-    <PageContainer align="baseline" direction="column">
+    <PageContainer align="baseline" direction="column" id="caseStudies">
       <Header>Case Studies</Header>
       <Content>
         <CaseStudiesList>

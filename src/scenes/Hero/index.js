@@ -7,7 +7,7 @@ import Parallax from './components/Parallax';
 
 const Hero = () => {
   return (
-    <PageContainer>
+    <PageContainer id="landing">
       <Parallax />
       <Banner />
     </PageContainer>

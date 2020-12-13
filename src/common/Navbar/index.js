@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-scroll';
 
 const Wrapper = styled.nav`
   position: sticky;
@@ -10,12 +11,12 @@ const Wrapper = styled.nav`
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px;
   transition: 0.5s ease;
+  cursor: pointer;
   ${({ scrolled }) =>
     scrolled &&
     css`
       background-color: #fff6eb;
       z-index: 20;
-      box-shadow: 0px 6px 12px 0px #f9efe4;
     `}
 `;
 
@@ -23,6 +24,14 @@ const LinksWrapper = styled.div`
   width: 50%;
   display: flex;
   justify-content: space-between;
+  & > a {
+    font-weight: 700;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    &.active {
+      color: var(--primary-color);
+    }
+  }
 `;
 
 const Navbar = () => {
@@ -42,13 +51,36 @@ const Navbar = () => {
       window.removeEventListener('scroll');
     };
   }, []);
+
   return (
     <Wrapper scrolled={scrolled}>
-      <p>LOGO</p>
+      <Link
+        activeClass="active"
+        to="landing"
+        spy={true}
+        smooth={true}
+        duration={1000}
+        offset={-100}
+      >
+        <p>LOGO</p>
+      </Link>
       <LinksWrapper>
-        <a>Case Studies</a>
-        <a>About</a>
-        <a>Contact</a>
+        <Link
+          activeClass="active"
+          to="caseStudies"
+          spy={true}
+          smooth={true}
+          duration={1000}
+          offset={-100}
+        >
+          Case Studies
+        </Link>
+        <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000} offset={-50}>
+          About
+        </Link>
+        <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000}>
+          Contact
+        </Link>
       </LinksWrapper>
     </Wrapper>
   );
