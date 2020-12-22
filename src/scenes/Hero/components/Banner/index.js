@@ -22,7 +22,6 @@ const HeroWrapper = styled.div`
   & > div > svg {
     width: 90%;
     height: auto;
-    transform: scale(1.2);
   }
   @media ${device.laptop} {
     flex-direction: row;

@@ -16,6 +16,7 @@ module.exports = {
         common: path.join(__dirname, 'src/common'),
         scenes: path.join(__dirname, 'src/scenes'),
         consts: path.join(__dirname, 'src/consts'),
+        styles: path.join(__dirname, 'src/styles'),
       },
     },
     `gatsby-plugin-styled-components`,
