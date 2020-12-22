@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { device } from 'src/consts/device.js';
 
 export const SocialContainer = styled.div`
@@ -9,6 +10,11 @@ export const SocialContainer = styled.div`
   transition: 0.2s;
   right: 2.5%;
   bottom: 2.5%;
+  display: none;
+
+  @media ${device.tablet} {
+    display: flex;
+  }
 `;
 
 export const IconContainer = styled.a`

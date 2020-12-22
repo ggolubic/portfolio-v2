@@ -127,7 +127,7 @@ const Navbar = () => {
           >
             <LinkContent>About</LinkContent>
           </Link>
-          <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000}>
+          <Link activeClass="active" to="contact" spy={true} smooth={true} duration={1000}>
             Contact
           </Link>
         </LinksWrapper>
