@@ -2,19 +2,13 @@ import styled from 'styled-components';
 import { device } from 'src/consts/device.js';
 
 export const SocialContainer = styled.div`
-  position: sticky;
-  bottom: 2.5%;
+  position: absolute;
   display: flex;
+  flex-direction: column;
   align-items: center;
   transition: 0.2s;
-  justify-content: space-evenly;
-
-  @media ${device.tablet} {
-    flex-direction: column;
-    bottom: 10%;
-    /* margin: 0 90%; */
-    margin: 0 95%;
-  }
+  right: 2.5%;
+  bottom: 2.5%;
 `;
 
 export const IconContainer = styled.a`

@@ -4,7 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import Hero from 'scenes/Hero';
 import About from 'scenes/About';
 import Social from 'scenes/Social';
-import CaseStudies from 'scenes/CaseStudies';
+import Work from 'scenes/CaseStudies';
+import Footer from 'scenes/Footer';
 import GlobalStyles from 'src/styles/globalStyles.js';
 import Navbar from 'src/common/Navbar';
 import theme from 'src/styles/theme';
@@ -16,8 +17,9 @@ export default function Home() {
         <GlobalStyles />
         <Navbar />
         <Hero />
-        <CaseStudies />
-        <About />
+        <Work />
+        {/* <About /> */}
+        <Footer />
         <Social />
       </ThemeProvider>
     </div>
