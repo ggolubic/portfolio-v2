@@ -67,8 +67,11 @@ const CaseStudyLink = styled.a`
     height: 480px;
   }
 
+  &:hover {
+    box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.8);
+  }
   &:hover ${CaseStudyText} {
-    font-size: 1.2em;
+    transform: translateY(-10px);
   }
 `;
 const Title = styled.h3`
@@ -100,6 +103,8 @@ const CTA = styled.button`
   color: white;
   border-radius: 5px;
   font-weight: 600;
+  transition: 0.35s;
+  cursor: pointer;
   border: 1px solid var(--primary-color);
   @media ${device.tablet} {
     font-size: 1em;
@@ -107,6 +112,11 @@ const CTA = styled.button`
   @media ${device.laptop} {
     font-size: 1.5em;
   }
+
+  //TODO
+  /* &:hover {
+    background-color: #bd4f6c;
+  } */
 `;
 const CaseStudyMask = styled.div`
   position: absolute;
@@ -116,7 +126,6 @@ const CaseStudyMask = styled.div`
   height: 100%;
   overflow: hidden;
   border-radius: 10px;
-
   background: ${({ theme }) => theme.colors.black};
   opacity: 0.8;
 `;
@@ -142,8 +151,8 @@ const CaseStudyText = styled.div`
 
 const CaseStudies = () => {
   return (
-    <PageContainer align="baseline" direction="column" id="caseStudies">
-      <Header>Case Studies</Header>
+    <PageContainer align="baseline" direction="column" id="work">
+      <Header>Work</Header>
       <Content>
         <CaseStudiesList>
           {caseStudiesData.map((caseStudy, i) => (
@@ -154,7 +163,9 @@ const CaseStudies = () => {
                   <CaseStudyText>
                     <Title>{caseStudy.name}</Title>
                     <Description>{caseStudy.description}</Description>
-                    <CTA>Find out more</CTA>
+                    <CTA>
+                      <a href={caseStudy.url}>Find out more</a>
+                    </CTA>
                   </CaseStudyText>
                 </CaseStudyLink>
               </Fade>

@@ -1,35 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 
-const Wrapper = styled.nav`
+const OuterWrapper = styled.nav`
   position: sticky;
   top: 0;
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.background};
-  padding: 20px;
   transition: 0.5s ease;
-  cursor: pointer;
   ${({ scrolled }) =>
     scrolled &&
     css`
       background-color: #fff6eb;
-      z-index: 20;
+      z-index: 5;
     `}
+`;
+
+const Wrapper = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  max-width: 1600px;
 `;
 
 const LinksWrapper = styled.div`
   width: 50%;
   display: flex;
   justify-content: space-between;
-  & > a {
-    font-weight: 700;
-    font-size: 1.3em;
-    text-transform: uppercase;
-    &.active {
-      color: var(--primary-color);
+`;
+
+const Link = styled(ScrollLink)`
+  padding: 20px;
+  font-weight: 700;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  transition: 0.15s;
+  cursor: pointer;
+  &.active {
+    color: var(--primary-color);
+  }
+  &:hover {
+    color: var(--primary-color);
+  }
+`;
+
+const LinkContent = styled.span`
+  position: relative;
+  &::before {
+    z-index: 5;
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: -10px;
+    height: 3px;
+    left: 0;
+    display: block;
+    background: var(--primary-color);
+    transform: translate3d(0, 5px, 0);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+
+    ${Link}:hover & {
+      opacity: 1;
+      transform: scale3d(1.1, 1.1, 1.1) rotate(-2deg);
+    }
+    ${Link}.active & {
+      opacity: 1;
+      transform: scale3d(1.1, 1.1, 1.1) rotate(2deg);
     }
   }
 `;
@@ -53,36 +89,45 @@ const Navbar = () => {
   }, []);
 
   return (
-    <Wrapper scrolled={scrolled}>
-      <Link
-        activeClass="active"
-        to="landing"
-        spy={true}
-        smooth={true}
-        duration={1000}
-        offset={-100}
-      >
-        <p>LOGO</p>
-      </Link>
-      <LinksWrapper>
+    <OuterWrapper scrolled={scrolled}>
+      <Wrapper>
         <Link
           activeClass="active"
-          to="caseStudies"
+          to="landing"
           spy={true}
           smooth={true}
           duration={1000}
           offset={-100}
         >
-          Case Studies
+          <p>LOGO</p>
         </Link>
-        <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000} offset={-50}>
-          About
-        </Link>
-        <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000}>
-          Contact
-        </Link>
-      </LinksWrapper>
-    </Wrapper>
+        <LinksWrapper>
+          <Link
+            activeClass="active"
+            to="work"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={-100}
+          >
+            <LinkContent>Work</LinkContent>
+          </Link>
+          <Link
+            activeClass="active"
+            to="about"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={-50}
+          >
+            <LinkContent>About</LinkContent>
+          </Link>
+          <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000}>
+            Contact
+          </Link>
+        </LinksWrapper>
+      </Wrapper>
+    </OuterWrapper>
   );
 };
 
