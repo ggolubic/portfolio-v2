@@ -10,6 +10,7 @@ body {
     font-size:13px;
     font-family:${({ theme }) => theme.fonts.primaryFontFamily2};
     font-display: swap;
+    background-color: ${({ theme }) => theme.colors.background};
 }
 
 a {

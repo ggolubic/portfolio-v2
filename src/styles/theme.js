@@ -12,6 +12,7 @@ const theme = {
   },
   colors: {
     background: '#fefaf6',
+    borderColor: 'rgb(186, 199, 213)',
     turqoise: '#00cdac',
     black: '#101419',
     pink: '#BD4F6C',

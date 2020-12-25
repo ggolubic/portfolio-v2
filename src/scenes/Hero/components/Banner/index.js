@@ -61,9 +61,9 @@ const Headline = styled.h1`
     font-size: 5.5em;
   }
   @media ${device.laptop} {
-    font-size: 6.5em;
+    font-size: 5.5em;
   }
-  @media ${device.laptopL} {
+  @media ${device.desktop} {
     font-size: 7em;
   }
 `;

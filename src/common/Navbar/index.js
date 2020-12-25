@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
 
+import { device } from 'consts/device';
+
 const OuterWrapper = styled.nav`
   position: sticky;
   top: 0;
@@ -16,10 +18,12 @@ const OuterWrapper = styled.nav`
     `}
 `;
 
-const Wrapper = styled.nav`
+const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   max-width: 1600px;
+  @media ${device.tablet} {
+    justify-content: space-between;
+  }
 `;
 
 const LinksWrapper = styled.div`
@@ -79,6 +83,7 @@ const Navbar = () => {
     } else {
       setScrolled(false);
     }
+    console.log(window.scrollY);
   };
 
   useEffect(() => {
@@ -122,8 +127,8 @@ const Navbar = () => {
           >
             <LinkContent>About</LinkContent>
           </Link>
-          <Link activeClass="active" to="about" spy={true} smooth={true} duration={1000}>
-            Contact
+          <Link activeClass="active" to="contact" spy={true} smooth={true} duration={1000}>
+            <LinkContent>Contact</LinkContent>
           </Link>
         </LinksWrapper>
       </Wrapper>
