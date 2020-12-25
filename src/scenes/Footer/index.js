@@ -3,18 +3,21 @@ import styled from 'styled-components';
 
 import { device } from 'consts/device';
 
+import Form from './Form';
+
 const Wrapper = styled.div`
   width: 100%;
-  padding: 8% 0;
+  position: relative;
+  padding: 100px 0 30px;
+  background-color: ${({ theme }) => theme.colors.background};
   z-index: 11;
-  background-color: var(--primary-color);
 `;
 const Content = styled.div`
   width: 100%;
   margin: 0 auto;
 
   @media ${device.tablet} {
-    width: 50%;
+    width: 60%;
   }
 `;
 
@@ -34,7 +37,7 @@ const Link = styled.a`
   position: relative;
   font-size: 1.5em;
   cursor: pointer;
-  color: white;
+  color: ${({ theme }) => theme.colors.black};
   margin-bottom: 10px;
   &::before {
     content: '';
@@ -49,7 +52,7 @@ const Link = styled.a`
   @media ${device.tablet} {
     &:hover::before {
       width: 90%;
-      background: white;
+      background: var(--primary-color);
     }
   }
 `;
@@ -63,10 +66,29 @@ const Copyright = styled.p`
   }
 `;
 
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.black};
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 1.2em;
+  @media ${device.tablet} {
+    font-size: 1.5em;
+  }
+  @media ${device.laptop} {
+    font-size: 2em;
+  }
+`;
+
 const Footer = () => {
   return (
     <Wrapper id="contact">
       <Content>
+        <Text>Have an exciting project that you need help with? Shoot me a message.</Text>
+        <Form />
+        <Text>Or reach out through social media below.</Text>
         <Flex>Logo</Flex>
         <Flex>
           <Link href="#" rel="noopener" target="_blank">
