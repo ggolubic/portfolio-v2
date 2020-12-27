@@ -83,7 +83,6 @@ const Navbar = () => {
     } else {
       setScrolled(false);
     }
-    console.log(window.scrollY);
   };
 
   useEffect(() => {
