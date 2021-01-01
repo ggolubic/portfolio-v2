@@ -17,8 +17,7 @@ const ContentStyles = styled.div`
   padding: 2rem;
 `;
 
-function Layout({ location, title, children, className, pageContext, path, ...rest }) {
-  console.log(rest, title, pageContext);
+const Layout = ({ location, title, children, className, pageContext, path, uri, ...rest }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -29,7 +28,7 @@ function Layout({ location, title, children, className, pageContext, path, ...re
         <meta name="theme-color" content="#fefaf6" />
       </Helmet>
       <LayoutStyles>
-        <Navbar pageContext={pageContext} />
+        <Navbar pageContext={pageContext} location={uri} />
         <MDXProvider>
           <ContentStyles>{children}</ContentStyles>
         </MDXProvider>
@@ -37,6 +36,6 @@ function Layout({ location, title, children, className, pageContext, path, ...re
       </LayoutStyles>
     </ThemeProvider>
   );
-}
+};
 
 export default Layout;
