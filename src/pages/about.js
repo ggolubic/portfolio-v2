@@ -1,10 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import Img from 'gatsby-image';
 
 import Container from 'common/Container';
-import Image from './components/Image';
-
 import { device } from 'consts/device';
+
+const Wrapper = styled.div`
+  display: flex;
+  max-width: 500px;
+  height: 400px;
+  justify-content: center;
+`;
+
+const Image = () => {
+  const data = useStaticQuery(graphql`
+    query ProfileImageQuery {
+      profileImage: file(relativePath: { eq: "profile.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 500, sizes: "(max-width: 500px) calc(100vw - 40px), 500px") {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <Wrapper>
+      <Img
+        fluid={data.profileImage.childImageSharp.fluid}
+        alt="Its me"
+        style={{ margin: '1rem', width: '100%', maxHeight: 'calc(50vh - 4rem)' }}
+        imgStyle={{ objectFit: 'contain' }}
+      />
+    </Wrapper>
+  );
+};
 
 const Section = styled.section`
   display: flex;
@@ -42,13 +75,15 @@ const SectionContent = styled.div`
 `;
 const Text = styled.p``;
 
-const About = () => {
+const About = (props) => {
+  console.log(props);
   return (
     <Section id="about">
+      <Helmet htmlAttributes={{ lang: 'en' }} title="About Gabrijel" />
       <Container>
         <SectionTitle>About me</SectionTitle>
         <SectionContent>
-          <Image imageName="profile.jpg" />
+          <Image />
           <Text>
             Born and raised in Split, Croatia where I graduated from FESB in computer science and am
             currently pursuing a Masters degree. My passion for computers and gaming started at a

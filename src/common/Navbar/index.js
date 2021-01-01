@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
+import { Link as DirectLink } from 'gatsby';
 
 import { device } from 'consts/device';
 
@@ -32,7 +33,21 @@ const LinksWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Link = styled(ScrollLink)`
+const StyledScrollLink = styled(ScrollLink)`
+  padding: 20px;
+  font-weight: 700;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  transition: 0.15s;
+  cursor: pointer;
+  &.active {
+    color: var(--primary-color);
+  }
+  &:hover {
+    color: var(--primary-color);
+  }
+`;
+const StyledDirectLink = styled(DirectLink)`
   padding: 20px;
   font-weight: 700;
   font-size: 1.3em;
@@ -63,18 +78,48 @@ const LinkContent = styled.span`
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
 
-    ${Link}:hover & {
+    ${StyledScrollLink}:hover & {
       opacity: 1;
       transform: scale3d(1.1, 1.1, 1.1) rotate(-2deg);
     }
-    ${Link}.active & {
+    ${StyledScrollLink}.active & {
+      opacity: 1;
+      transform: scale3d(1.1, 1.1, 1.1) rotate(2deg);
+    }
+    ${StyledDirectLink}:hover & {
+      opacity: 1;
+      transform: scale3d(1.1, 1.1, 1.1) rotate(-2deg);
+    }
+    ${StyledDirectLink}.active & {
       opacity: 1;
       transform: scale3d(1.1, 1.1, 1.1) rotate(2deg);
     }
   }
 `;
+//uri=/about, to=/about
+const Link = ({ uri, text, to, id }) => {
+  if (uri === to) {
+    return (
+      <StyledScrollLink
+        activeClass="active"
+        to={id}
+        spy={true}
+        smooth={true}
+        duration={1000}
+        offset={-100}
+      >
+        <LinkContent>{text}</LinkContent>
+      </StyledScrollLink>
+    );
+  }
+  return (
+    <StyledDirectLink to={to}>
+      <LinkContent>{text}</LinkContent>
+    </StyledDirectLink>
+  );
+};
 
-const Navbar = () => {
+const Navbar = ({ location }) => {
   const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = () => {
@@ -83,7 +128,6 @@ const Navbar = () => {
     } else {
       setScrolled(false);
     }
-    console.log(window.scrollY);
   };
 
   useEffect(() => {
@@ -96,40 +140,11 @@ const Navbar = () => {
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <Link
-          activeClass="active"
-          to="landing"
-          spy={true}
-          smooth={true}
-          duration={1000}
-          offset={-100}
-        >
-          <p>LOGO</p>
-        </Link>
+        <StyledScrollLink to="landing">LOGO</StyledScrollLink>
         <LinksWrapper>
-          <Link
-            activeClass="active"
-            to="work"
-            spy={true}
-            smooth={true}
-            duration={1000}
-            offset={-100}
-          >
-            <LinkContent>Work</LinkContent>
-          </Link>
-          <Link
-            activeClass="active"
-            to="about"
-            spy={true}
-            smooth={true}
-            duration={1000}
-            offset={-50}
-          >
-            <LinkContent>About</LinkContent>
-          </Link>
-          <Link activeClass="active" to="contact" spy={true} smooth={true} duration={1000}>
-            <LinkContent>Contact</LinkContent>
-          </Link>
+          <Link uri={location} id="work" to="/" text="Work" />
+          <Link uri={location} id="about" to="/about" text="About" />
+          <Link uri={location} id="contact" to={location} text="Contact" />
         </LinksWrapper>
       </Wrapper>
     </OuterWrapper>

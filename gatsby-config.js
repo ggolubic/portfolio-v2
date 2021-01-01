@@ -6,7 +6,11 @@
 const path = require('path');
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: 'Gabrijel Golubic',
+    author: 'Gabrijel Golubic',
+    description: 'Frontend Web Developer',
+  },
   plugins: [
     {
       resolve: 'gatsby-plugin-root-import',
@@ -17,6 +21,7 @@ module.exports = {
         scenes: path.join(__dirname, 'src/scenes'),
         consts: path.join(__dirname, 'src/consts'),
         styles: path.join(__dirname, 'src/styles'),
+        images: path.join(__dirname, 'src/images'),
       },
     },
     `gatsby-plugin-styled-components`,
@@ -26,7 +31,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'images',
-        path: `${__dirname}/src/images/`,
+        path: `${__dirname}/src/images`,
       },
     },
     {

@@ -1,4 +1,6 @@
-const { default: theme } = require('./src/styles/theme');
+const React = require('react');
+const Layout = require('./src/common/Layout').default;
+const theme = require('./src/styles/theme').default;
 
 exports.onInitialClientRender = () => {
   const root = document.documentElement;
@@ -23,3 +25,9 @@ const randomColor = () => {
       return theme.colors.turqoise;
   }
 };
+
+exports.wrapPageElement = ({ element, props }) => (
+  // props provide same data to Layout as Page element will get
+  // including location, data, etc - you don't need to pass it
+  <Layout {...props}>{element}</Layout>
+);
