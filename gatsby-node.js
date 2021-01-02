@@ -1,14 +1,12 @@
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 
-async function makePostsFromMd({ graphql, actions }) {
-  const workPost = path.resolve('templates/work');
+async function makePostsFromMdx({ graphql, actions }) {
+  const workPost = path.resolve('./src/templates/work.js');
   const { errors, data } = await graphql(
     `
       {
-        allMarkdownRemark(
-          filter: { fields: { collection: { eq: "post" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
-        ) {
+        allMdx(filter: { fields: { collection: { eq: "work" } } }) {
           edges {
             node {
               body
@@ -25,18 +23,18 @@ async function makePostsFromMd({ graphql, actions }) {
     `,
   );
   if (errors) {
-    console.log(errors);
+    console.error(errors);
     throw new Error('There was an error');
   }
-  const work = data.allMd.edges;
-  work.forEach((post, i) => {
+  const work = data.allMdx.edges;
+  work.forEach(({ node }, i) => {
     const prev = work[i - 1];
     const next = work[i + 1];
     actions.createPage({
-      path: post.node.fields.slug,
+      path: node.fields.slug,
       component: workPost,
       context: {
-        slug: post.node.fields.slug,
+        slug: node.fields.slug,
         collection: 'work',
         prev,
         next,
@@ -50,7 +48,7 @@ async function paginate({ graphql, actions, collection, pathPrefix, component })
   const { errors, data } = await graphql(
     `
       {
-        allMarkdownRemark(filter: { fields: { collection: { eq: "${collection}" } } }) {
+        allMdx(filter: { fields: { collection: { eq: "${collection}" } } }) {
           totalCount
         }
       }
@@ -60,7 +58,7 @@ async function paginate({ graphql, actions, collection, pathPrefix, component })
     console.log(errors);
     throw new Error('There was an error');
   }
-  const { totalCount } = data.allMd;
+  const { totalCount } = data.allMdx;
   const pages = Math.ceil(totalCount / 10);
 
   Array.from({ length: pages }).forEach((_, i) => {
@@ -79,13 +77,38 @@ async function paginate({ graphql, actions, collection, pathPrefix, component })
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   await Promise.all([
-    makePostsFromMd({ graphql, actions }),
-    paginate({
-      graphql,
-      actions,
-      collection: 'work',
-      pathPrefix: '/work/',
-      component: path.resolve('templates/work'),
-    }),
+    makePostsFromMdx({ graphql, actions }),
+    // paginate({
+    //   graphql,
+    //   actions,
+    //   collection: 'work',
+    //   pathPrefix: '/work/',
+    //   component: path.resolve('./src/templates/work.js'),
+    // }
+    // ),
   ]);
+};
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === `Mdx`) {
+    console.log(node);
+    // if my posts have a slug in the frontmatter, it means I've specified what I want it to be. Otherwise I want to create one automatically
+
+    // This is where we add our own custom fields to each node
+    const generatedSlug = createFilePath({ node, getNode });
+    console.table({ value: node.frontmatter.slug ? `/${node.frontmatter.slug}/` : generatedSlug });
+    createNodeField({
+      name: `slug`,
+      node,
+      value: node.frontmatter.slug ? `/${node.frontmatter.slug}/` : generatedSlug,
+    });
+
+    // Add it to a collection
+    createNodeField({
+      name: `collection`,
+      node,
+      value: getNode(node.parent).sourceInstanceName,
+    });
+  }
 };

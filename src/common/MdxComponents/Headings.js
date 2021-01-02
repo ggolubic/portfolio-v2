@@ -12,16 +12,19 @@ const headingSizes = {
 };
 
 const HStyles = styled.h1`
+  position: relative;
   /* Default h1 */
   font-size: ${headingSizes.h1}rem;
   /* Default allow to change */
   font-size: ${({ as }) => as && `${headingSizes[as]}rem`};
   /* Visually override if need different font size vs the semantic element */
   font-size: ${({ looksLike }) => looksLike && `${headingSizes[looksLike]}rem`};
+  color: var(--black);
+  letter-spacing: 2px;
+  margin-top: 100px;
   @media (max-width: 450px) {
     font-size: 3rem;
   }
-  position: relative;
 `;
 
 export default function H(props) {

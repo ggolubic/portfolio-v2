@@ -52,6 +52,22 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1500,
+              linkImagesToOriginal: false,
+              withWebp: true,
+            },
+          },
+        ],
+      },
+    },
 
     // {
     //   resolve: `gatsby-source-filesystem`,

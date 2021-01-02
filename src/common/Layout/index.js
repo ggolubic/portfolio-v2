@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 import Footer from 'scenes/Footer';
 import GlobalStyles from 'styles/globalStyles';
 import theme from 'styles/theme';
+import mdxComponents from '../MdxComponents';
 
 const LayoutStyles = styled.div`
   min-height: calc(100vh - 40px);
@@ -29,7 +30,7 @@ const Layout = ({ location, title, children, className, pageContext, path, uri, 
       </Helmet>
       <LayoutStyles>
         <Navbar pageContext={pageContext} location={uri} />
-        <MDXProvider>
+        <MDXProvider components={mdxComponents}>
           <ContentStyles>{children}</ContentStyles>
         </MDXProvider>
         <Footer />

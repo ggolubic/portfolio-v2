@@ -1,10 +1,31 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Image } from 'gatsby-image';
 import H from 'common/MdxComponents/Headings';
 // import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
+
+const WorkHeader = styled.div`
+  & > h1 {
+    margin: 10% auto 0 15%;
+    font-weight: 100;
+  }
+  & > p {
+    margin: 0 auto 10% 15%;
+  }
+`;
+
+const Position = styled.p`
+  color: var(--gray);
+  font-size: 1.5em;
+  letter-spacing: 1px;
+`;
+
+const Content = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -14,16 +35,17 @@ export const pageQuery = graphql`
         author
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
       fileAbsolutePath
+      body
       frontmatter {
         title
         slug
-        image
+        year
+        position
       }
-      body
     }
   }
 `;
@@ -34,10 +56,16 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
 
   return (
     <>
-      <Image image={work.frontmatter.image} alt={work.frontmatter.title} />
       <WorkMetaTags work={work} />
-      <H>{work.frontmatter.title}</H>
-      <MDXRenderer scope={scope}>{post.body}</MDXRenderer>
+      <WorkHeader>
+        <H>{work.frontmatter.title}</H>
+        <Position>
+          {work.frontmatter.position} / {work.frontmatter.year}
+        </Position>
+      </WorkHeader>
+      <Content>
+        <MDXRenderer scope={scope}>{work.body}</MDXRenderer>
+      </Content>
       {/* <ContentNav
         pathPrefix={pageContext.pathPrefix}
         prev={pageContext.prev}
