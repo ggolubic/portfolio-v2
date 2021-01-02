@@ -22,16 +22,26 @@ module.exports = {
         consts: path.join(__dirname, 'src/consts'),
         styles: path.join(__dirname, 'src/styles'),
         images: path.join(__dirname, 'src/images'),
+        utils: path.join(__dirname, 'src/utils'),
+        templates: path.join(__dirname, 'src/templates'),
       },
     },
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'images',
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'work',
+        path: `${__dirname}/src/data/work`,
       },
     },
     {
@@ -42,6 +52,7 @@ module.exports = {
         },
       },
     },
+
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
