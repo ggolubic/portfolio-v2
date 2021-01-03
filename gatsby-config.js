@@ -26,6 +26,7 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
       },
     },
+    'gatsby-plugin-transition-link',
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,

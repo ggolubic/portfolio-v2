@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import Img from 'gatsby-image';
 import H from 'common/MdxComponents/Headings';
 // import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
@@ -27,6 +28,17 @@ const Content = styled.div`
   margin: 0 auto;
 `;
 
+const Image = styled(Img)`
+  width: 20px;
+  height: 26px;
+  margin-left: 10px;
+  display: inline-block;
+  @media (max-width: 450px) {
+    width: 15px;
+    height: 20px;
+  }
+`;
+
 export const pageQuery = graphql`
   query($slug: String!) {
     site {
@@ -45,6 +57,13 @@ export const pageQuery = graphql`
         slug
         year
         position
+        logo {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
@@ -58,7 +77,13 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
     <>
       <WorkMetaTags work={work} />
       <WorkHeader>
-        <H>{work.frontmatter.title}</H>
+        <H>
+          {work.frontmatter.title}
+          <Image
+            fluid={work.frontmatter.logo.childImageSharp.fluid}
+            alt={`${work.frontmatter.title}-logo`}
+          />
+        </H>
         <Position>
           {work.frontmatter.position} / {work.frontmatter.year}
         </Position>

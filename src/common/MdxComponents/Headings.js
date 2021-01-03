@@ -23,7 +23,7 @@ const HStyles = styled.h1`
   letter-spacing: 2px;
   margin-top: 100px;
   @media (max-width: 450px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 

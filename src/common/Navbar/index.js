@@ -140,7 +140,7 @@ const Navbar = ({ location }) => {
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <StyledScrollLink to="landing">LOGO</StyledScrollLink>
+        <StyledDirectLink to="/">LOGO</StyledDirectLink>
         <LinksWrapper>
           <Link uri={location} id="work" to="/" text="Work" />
           <Link uri={location} id="about" to="/about" text="About" />

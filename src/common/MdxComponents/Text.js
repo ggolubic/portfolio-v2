@@ -6,6 +6,10 @@ const p = styled.p`
   font-family: sans-serif;
   margin-bottom: 30px;
   color: var(--gray);
+  @media (max-width: 450px) {
+    font-size: 1.2em;
+    line-height: 1.7;
+  }
 `;
 
 export default p;

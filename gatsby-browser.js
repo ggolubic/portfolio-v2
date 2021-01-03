@@ -8,7 +8,7 @@ exports.onInitialClientRender = () => {
 };
 
 const randomColor = () => {
-  const rand = Math.round(Math.random() * 5);
+  const rand = Math.round(Math.random() * 4);
 
   switch (rand) {
     case 1:
@@ -19,8 +19,6 @@ const randomColor = () => {
       return theme.colors.blue;
     case 4:
       return theme.colors.turqoise;
-    case 5:
-      return theme.colors.black;
     default:
       return theme.colors.turqoise;
   }
