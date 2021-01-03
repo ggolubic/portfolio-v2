@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
 import H from 'common/MdxComponents/Headings';
-// import ContentNav from 'common/ContentNav';
+import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
 
 const WorkHeader = styled.div`
@@ -90,12 +90,12 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
       </WorkHeader>
       <Content>
         <MDXRenderer scope={scope}>{work.body}</MDXRenderer>
+        <ContentNav
+          pathPrefix={pageContext.pathPrefix}
+          prev={pageContext.prev}
+          next={pageContext.next}
+        />
       </Content>
-      {/* <ContentNav
-        pathPrefix={pageContext.pathPrefix}
-        prev={pageContext.prev}
-        next={pageContext.next}
-      /> */}
     </>
   );
 }

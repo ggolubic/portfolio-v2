@@ -28,8 +28,8 @@ async function makePostsFromMdx({ graphql, actions }) {
   }
   const work = data.allMdx.edges;
   work.forEach(({ node }, i) => {
-    const prev = work[i - 1];
-    const next = work[i + 1];
+    const prev = work[i - 1] || null;
+    const next = work[i + 1] || null;
     actions.createPage({
       path: node.fields.slug,
       component: workPost,
@@ -84,8 +84,7 @@ exports.createPages = async ({ graphql, actions }) => {
     //   collection: 'work',
     //   pathPrefix: '/work/',
     //   component: path.resolve('./src/templates/work.js'),
-    // }
-    // ),
+    // }),
   ]);
 };
 
