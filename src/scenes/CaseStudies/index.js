@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 import { PageContainer } from 'src/common/PageContainer';
 import { device } from 'src/consts/device';
@@ -46,7 +47,7 @@ const CaseStudiesList = styled.ul`
   }
 `;
 
-const CaseStudyLink = styled.a`
+const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...props} />)`
   display: block;
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
   width: 80%;
@@ -158,14 +159,18 @@ const CaseStudies = () => {
           {caseStudiesData.map((caseStudy, i) => (
             <li key={i}>
               <Fade bottom={true} duration={1000} delay={300 * i} distance="30px">
-                <CaseStudyLink href={caseStudy.url} backgroundImage={caseStudy.imageUrl}>
+                <CaseStudyLink
+                  paintDrip
+                  hex="#fefaf6"
+                  to={caseStudy.url}
+                  duration={0.8}
+                  backgroundImage={caseStudy.imageUrl}
+                >
                   <CaseStudyMask />
                   <CaseStudyText>
                     <Title>{caseStudy.name}</Title>
                     <Description>{caseStudy.description}</Description>
-                    <CTA>
-                      <a href={caseStudy.url}>Find out more</a>
-                    </CTA>
+                    <CTA>Find out more</CTA>
                   </CaseStudyText>
                 </CaseStudyLink>
               </Fade>

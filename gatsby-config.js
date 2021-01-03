@@ -22,16 +22,27 @@ module.exports = {
         consts: path.join(__dirname, 'src/consts'),
         styles: path.join(__dirname, 'src/styles'),
         images: path.join(__dirname, 'src/images'),
+        utils: path.join(__dirname, 'src/utils'),
+        templates: path.join(__dirname, 'src/templates'),
       },
     },
+    'gatsby-plugin-transition-link',
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'images',
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'work',
+        path: `${__dirname}/src/data/work`,
       },
     },
     {
@@ -42,6 +53,23 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1500,
+              linkImagesToOriginal: false,
+              withWebp: true,
+            },
+          },
+        ],
+      },
+    },
+
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
