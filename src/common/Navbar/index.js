@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
-import { Link as DirectLink } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 
 import { device } from 'consts/device';
 
@@ -22,7 +22,8 @@ const OuterWrapper = styled.nav`
 
 const Wrapper = styled.div`
   display: flex;
-  max-width: 1200px;
+  max-width: 1600px;
+  margin: 0 auto;
   justify-content: space-between;
 `;
 
@@ -52,7 +53,7 @@ const StyledScrollLink = styled(ScrollLink)`
   }
 `;
 
-const StyledDirectLink = styled(DirectLink)`
+const StyledDirectLink = styled(AniLink)`
   padding: 20px 10px;
   font-weight: 700;
   font-size: 1.3em;
@@ -121,7 +122,7 @@ const Link = ({ uri, text, to, id }) => {
     );
   }
   return (
-    <StyledDirectLink to={to}>
+    <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to}>
       <LinkContent>{text}</LinkContent>
     </StyledDirectLink>
   );
@@ -148,7 +149,9 @@ const Navbar = ({ location }) => {
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <StyledDirectLink to="/">LOGO</StyledDirectLink>
+        <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to="/">
+          LOGO
+        </StyledDirectLink>
         <LinksWrapper>
           <Link uri={location} id="work" to="/" text="Work" />
           <Link uri={location} id="about" to="/about" text="About" />
