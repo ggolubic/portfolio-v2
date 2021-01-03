@@ -7,15 +7,19 @@ import Navbar from '../Navbar';
 import Footer from 'scenes/Footer';
 import GlobalStyles from 'styles/globalStyles';
 import theme from 'styles/theme';
+
 import mdxComponents from '../MdxComponents';
 
 const LayoutStyles = styled.div`
+  position: relative;
+  display: block;
   min-height: calc(100vh - 40px);
 `;
 
 const ContentStyles = styled.div`
+  overflow: hidden;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
 `;
 
 const Layout = ({ location, title, children, className, pageContext, path, uri, ...rest }) => {

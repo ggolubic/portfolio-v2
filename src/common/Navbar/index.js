@@ -11,6 +11,7 @@ const OuterWrapper = styled.nav`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background};
   transition: 0.5s ease;
+  height: 65px;
   ${({ scrolled }) =>
     scrolled &&
     css`
@@ -21,34 +22,20 @@ const OuterWrapper = styled.nav`
 
 const Wrapper = styled.div`
   display: flex;
-  max-width: 1600px;
-  @media ${device.tablet} {
-    justify-content: space-between;
-  }
-`;
-
-const LinksWrapper = styled.div`
-  width: 50%;
-  display: flex;
+  max-width: 1200px;
   justify-content: space-between;
 `;
 
-const StyledScrollLink = styled(ScrollLink)`
-  padding: 20px;
-  font-weight: 700;
-  font-size: 1.3em;
-  text-transform: uppercase;
-  transition: 0.15s;
-  cursor: pointer;
-  &.active {
-    color: var(--primary-color);
-  }
-  &:hover {
-    color: var(--primary-color);
+const LinksWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media ${device.tablet} {
+    width: 50%;
   }
 `;
-const StyledDirectLink = styled(DirectLink)`
-  padding: 20px;
+
+const StyledScrollLink = styled(ScrollLink)`
+  padding: 20px 10px;
   font-weight: 700;
   font-size: 1.3em;
   text-transform: uppercase;
@@ -59,6 +46,27 @@ const StyledDirectLink = styled(DirectLink)`
   }
   &:hover {
     color: var(--primary-color);
+  }
+  @media ${device.tablet} {
+    padding: 20px;
+  }
+`;
+
+const StyledDirectLink = styled(DirectLink)`
+  padding: 20px 10px;
+  font-weight: 700;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  transition: 0.15s;
+  cursor: pointer;
+  &.active {
+    color: var(--primary-color);
+  }
+  &:hover {
+    color: var(--primary-color);
+  }
+  @media ${device.tablet} {
+    padding: 20px;
   }
 `;
 

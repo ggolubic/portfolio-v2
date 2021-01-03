@@ -13,6 +13,7 @@ body {
     font-family:${({ theme }) => theme.fonts.primaryFontFamily2};
     font-display: swap;
     background-color: ${({ theme }) => theme.colors.background};
+    scroll-behavior: smooth;
 }
 
 a {

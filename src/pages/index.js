@@ -7,7 +7,7 @@ import Work from 'scenes/CaseStudies';
 
 const HomePage = ({ data, path }) => {
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <Helmet htmlAttributes={{ lang: 'en' }} title="Gabrijel Golubic - Frontend Web Developer" />
       <Hero />
       <Work />

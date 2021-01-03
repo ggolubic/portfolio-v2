@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   position: relative;
   padding: 100px 0 30px;
   background-color: ${({ theme }) => theme.colors.background};
-  z-index: 11;
+  z-index: 4;
 `;
 const Content = styled.div`
   width: 100%;
