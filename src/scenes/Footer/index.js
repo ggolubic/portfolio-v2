@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Social from './Social';
 
 import { device } from 'consts/device';
 
@@ -10,10 +11,11 @@ const Wrapper = styled.div`
   position: relative;
   padding: 100px 0 30px;
   background-color: ${({ theme }) => theme.colors.background};
-  z-index: 11;
+  z-index: 4;
 `;
+
 const Content = styled.div`
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
 
   @media ${device.tablet} {
@@ -21,46 +23,10 @@ const Content = styled.div`
   }
 `;
 
-const Flex = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  text-align: center;
-
-  @media ${device.tablet} {
-    flex-direction: row;
-  }
-`;
-
-const Link = styled.a`
-  position: relative;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.black};
-  margin-bottom: 10px;
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    z-index: 5;
-    transition: 0.35s;
-  }
-  @media ${device.tablet} {
-    &:hover::before {
-      width: 90%;
-      background: var(--primary-color);
-    }
-  }
-`;
-
 const Copyright = styled.p`
   text-align: center;
   letter-spacing: 1px;
-
+  color: var(--gray);
   @media ${device.tablet} {
     font-size: 1.2em;
   }
@@ -88,19 +54,8 @@ const Footer = () => {
       <Content>
         <Text>Have an exciting project that you need help with? Shoot me a message.</Text>
         <Form />
-        <Text>Or reach out through social media below.</Text>
-        <Flex>Logo</Flex>
-        <Flex>
-          <Link href="#" rel="noopener" target="_blank">
-            LinkedIn
-          </Link>
-          <Link href="#" rel="noopener" target="_blank">
-            Github
-          </Link>
-          <Link href="#" rel="noopener" target="_blank">
-            Instagram
-          </Link>
-        </Flex>
+        <Text>Or reach out through social media.</Text>
+        <Social />
         <Copyright>© 2020 Gabrijel Golubic</Copyright>
       </Content>
     </Wrapper>

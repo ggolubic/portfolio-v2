@@ -7,13 +7,12 @@ export const PageContainer = styled.section`
   position: relative;
   justify-content: center;
   flex-direction: ${({ direction }) => direction || 'row'};
-  min-height: 55vh;
   padding-top: 10%;
-  max-width: 1600px;
   margin: 0 auto;
+  max-width: 1600px;
 
   @media ${device.tablet} {
-    min-height: 100vh;
+    min-height: calc(100vh - 65px);
     align-items: ${({ align }) => align || 'center'};
     padding-top: 0px;
   }
