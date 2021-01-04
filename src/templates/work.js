@@ -32,7 +32,6 @@ const Image = styled(Img)`
   width: 40px;
   height: 40px;
   margin-left: 10px;
-  object-fit: scale-down !important;
   display: inline-block;
   @media (max-width: 450px) {
     width: 20px;
