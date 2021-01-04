@@ -9,7 +9,7 @@ module.exports = {
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
-    description: 'Frontend Web Developer',
+    description: 'Web Developer',
   },
   plugins: [
     {
@@ -58,7 +58,12 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
-          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`],
+            },
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
