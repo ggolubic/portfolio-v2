@@ -3,6 +3,7 @@ import H from './Headings';
 import Text from './Text';
 import Link from './Link';
 import Span from './Span';
+import Label from './Label';
 
 export default {
   h1: (props) => <H as="h1" {...props} />,
@@ -13,5 +14,6 @@ export default {
   h6: (props) => <H as="h6" {...props} />,
   p: (props) => <Text {...props} />,
   a: (props) => <Link {...props} />,
+  label: (props) => <Label {...props} />,
   highlight: (props) => <Span {...props} />,
 };
