@@ -26,10 +26,11 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
       },
     },
+    `gatsby-plugin-react-helmet`,
     'gatsby-plugin-transition-link',
+    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
