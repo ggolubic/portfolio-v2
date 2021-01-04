@@ -5,9 +5,11 @@ import Fade from 'react-reveal/Fade';
 
 const StyledContentNav = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-top: 50px;
   overflow: hidden;
+  #next {
+    margin-left: auto;
+  }
 
   a {
     display: flex;
@@ -44,30 +46,31 @@ const ContentNav = ({ prev, next, pathPrefix }) => {
   return (
     <StyledContentNav>
       {prev && (
-        <Fade left={true} duration={1000} delay={300}>
-          <AniLink
-            paintDrip
-            hex="#fefaf6"
-            duration={0.8}
-            to={`${pathPrefix}${prev.node.fields.slug}`}
-          >
+        <AniLink
+          paintDrip
+          hex="#fefaf6"
+          duration={0.8}
+          to={`${pathPrefix}${prev.node.fields.slug}`}
+        >
+          <Fade left={true} duration={1000} delay={300}>
             <strong>← Prev</strong>
             <p>{prev.node.frontmatter.title}</p>
-          </AniLink>
-        </Fade>
+          </Fade>
+        </AniLink>
       )}
       {next && (
-        <Fade right={true} duration={1000} delay={300}>
-          <AniLink
-            paintDrip
-            hex="#fefaf6"
-            duration={0.8}
-            to={`${pathPrefix}${next.node.fields.slug}`}
-          >
+        <AniLink
+          id="next"
+          paintDrip
+          hex="#fefaf6"
+          duration={0.8}
+          to={`${pathPrefix}${next.node.fields.slug}`}
+        >
+          <Fade right={true} duration={1000} delay={300}>
             <strong>Next →</strong>
             <p> {next.node.frontmatter.title}</p>
-          </AniLink>
-        </Fade>
+          </Fade>
+        </AniLink>
       )}
     </StyledContentNav>
   );

@@ -29,12 +29,13 @@ const Content = styled.div`
 `;
 
 const Image = styled(Img)`
-  width: 20px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
   margin-left: 10px;
+  object-fit: scale-down !important;
   display: inline-block;
   @media (max-width: 450px) {
-    width: 15px;
+    width: 20px;
     height: 20px;
   }
 `;
@@ -82,6 +83,7 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
           <Image
             fluid={work.frontmatter.logo.childImageSharp.fluid}
             alt={`${work.frontmatter.title}-logo`}
+            imgStyle={{ objectFit: 'scale-down' }}
           />
         </H>
         <Position>
