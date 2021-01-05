@@ -49,7 +49,7 @@ const CaseStudiesList = styled.ul`
 
 const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...props} />)`
   display: block;
-  background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
+  /* background-image: ${({ backgroundImage }) => `url(${backgroundImage})`}; */
   width: 80%;
   margin: 0 auto;
   opacity: 1;
