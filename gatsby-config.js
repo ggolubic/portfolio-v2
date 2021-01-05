@@ -6,6 +6,7 @@
 const path = require('path');
 
 module.exports = {
+  pathPrefix: '/',
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
@@ -57,6 +58,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        // root: __dirname,
         plugins: [`gatsby-remark-images`],
         gatsbyRemarkPlugins: [
           {
