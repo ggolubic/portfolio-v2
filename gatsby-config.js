@@ -58,48 +58,39 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'work',
-        path: `${__dirname}/src/workPosts`,
+        path: `${__dirname}/src/data/work`,
       },
     },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        // root: __dirname,
         plugins: [
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1200,
-              // linkImagesToOriginal: false,
-              // withWebp: true,
+              linkImagesToOriginal: false,
+              withWebp: true,
             },
           },
         ],
         gatsbyRemarkPlugins: [
-          // {
-          //   resolve: `gatsby-remark-copy-linked-files`,
-          //   options: {
-          //     ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`],
-          //   },
-          // },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`],
+            },
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1200,
-              // linkImagesToOriginal: false,
-              // withWebp: true,
+              linkImagesToOriginal: false,
+              withWebp: true,
             },
           },
         ],
       },
     },
-
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: 'data',
-    //     path: `${__dirname}/src/data/`,
-    //   },
-    // },
   ],
 };
