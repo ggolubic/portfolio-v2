@@ -36,6 +36,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         failOnError: false,
+        stripMetadata: false,
       },
     },
     {
