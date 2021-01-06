@@ -49,7 +49,6 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      excerpt
       fileAbsolutePath
       body
       frontmatter {
@@ -72,7 +71,7 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
   if (!work) {
     return <p>No Work Found? This should be a 404</p>;
   }
-
+  console.log(work);
   return (
     <>
       <WorkMetaTags work={work} />
