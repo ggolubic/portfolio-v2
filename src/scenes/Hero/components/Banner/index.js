@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
 import { device } from 'src/consts/device.js';
-// import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
+import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
 
 const Name = styled.span`
   color: var(--primary-color);
@@ -86,9 +86,9 @@ const Banner = () => {
           </ShortDescription>
         </Wrapper>
       </Fade>
-      {/* <Fade bottom={true} duration={1000} delay={1000} distance="30px">
+      <Fade bottom={true} duration={1000} delay={1000} distance="30px">
         <ComplexDashboardSvg />
-      </Fade> */}
+      </Fade>
     </HeroWrapper>
   );
 };

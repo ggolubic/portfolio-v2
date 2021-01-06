@@ -83,7 +83,7 @@ const About = (props) => {
       <Container>
         <SectionTitle>About me</SectionTitle>
         <SectionContent>
-          {/* <Image /> */}
+          <Image />
           <Text>
             Born and raised in Split, Croatia where I graduated from FESB in computer science and am
             currently pursuing a Masters degree. My passion for computers and gaming started at a

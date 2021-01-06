@@ -33,21 +33,21 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: 'images',
-    //     path: `${__dirname}/src/images`,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-plugin-react-svg`,
-    //   options: {
-    //     rule: {
-    //       include: /images/,
-    //     },
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -82,19 +82,6 @@ module.exports = {
               maxWidth: 1200,
               // linkImagesToOriginal: false,
               // withWebp: true,
-            },
-          },
-        ],
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1200,
             },
           },
         ],
