@@ -27,6 +27,15 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Rubik\:400,600,700`, // you can also specify font weights and styles
+        ],
+        display: 'swap',
+      },
+    },
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-transition-link',
     `gatsby-plugin-remove-trailing-slashes`,

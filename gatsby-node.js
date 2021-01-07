@@ -94,7 +94,6 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `Mdx`) {
-    console.log(node);
     // if my posts have a slug in the frontmatter, it means I've specified what I want it to be. Otherwise I want to create one automatically
 
     // This is where we add our own custom fields to each node

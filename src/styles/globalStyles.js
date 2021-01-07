@@ -10,8 +10,7 @@ const GlobalStyles = createGlobalStyle`
 body {
     margin:0;
     font-size:13px;
-    font-family:${({ theme }) => theme.fonts.primaryFontFamily2};
-    font-display: swap;
+    font-family:${({ theme }) => theme.fonts.primaryFontFamily};
     background-color: ${({ theme }) => theme.colors.background};
     scroll-behavior: smooth;
 }

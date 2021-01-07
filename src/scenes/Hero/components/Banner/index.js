@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
 
 import { device } from 'src/consts/device.js';
 import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
@@ -19,9 +18,10 @@ const HeroWrapper = styled.div`
     width: 100%;
   }
 
-  & > div > svg {
+  & > svg {
     width: 90%;
     height: auto;
+    z-index: 5;
   }
   @media ${device.laptop} {
     flex-direction: row;
@@ -44,7 +44,6 @@ const ShortDescription = styled.p`
   max-width: 700px;
   line-height: 2;
   margin-top: 15px;
-  z-index: 5;
   @media ${device.tablet} {
     font-size: 1.5em;
   }
@@ -73,22 +72,18 @@ const Headline = styled.h1`
 const Banner = () => {
   return (
     <HeroWrapper>
-      <Fade bottom={true} duration={1000} delay={500} distance="30px">
-        <Wrapper>
-          <Headline>
-            Hi, I'm <Name>Gabrijel.</Name>
-            <br />
-            Web developer.
-          </Headline>
-          <ShortDescription>
-            I also like playing with CI/CD stuff and contribute to Open Source when I find something
-            interesting.
-          </ShortDescription>
-        </Wrapper>
-      </Fade>
-      <Fade bottom={true} duration={1000} delay={1000} distance="30px">
-        <ComplexDashboardSvg />
-      </Fade>
+      <Wrapper>
+        <Headline>
+          Hi, I'm <Name>Gabrijel.</Name>
+          <br />
+          Web developer.
+        </Headline>
+        <ShortDescription>
+          I also like playing with CI/CD stuff and contribute to Open Source when I find something
+          interesting.
+        </ShortDescription>
+      </Wrapper>
+      <ComplexDashboardSvg />
     </HeroWrapper>
   );
 };

@@ -102,6 +102,7 @@ const CTA = styled.button`
   color: white;
   border-radius: 5px;
   font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.primaryFontFamily};
   transition: 0.35s;
   cursor: pointer;
   border: 1px solid var(--primary-color);
