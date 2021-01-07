@@ -32,13 +32,7 @@ module.exports = {
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        failOnError: false,
-        stripMetadata: false,
-      },
-    },
+    `gatsby-plugin-sharp`
     {
       resolve: `gatsby-source-filesystem`,
       options: {
