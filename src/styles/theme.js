@@ -1,14 +1,10 @@
-import 'fontsource-epilogue';
-import 'fontsource-secular-one';
-import 'fontsource-trocchi';
+import '@fontsource/secular-one';
 
 const theme = {
   fonts: {
     primaryFontColor: '#232320',
     secondaryFontColor: '#656270',
-    primaryFontFamily: 'Epilogue,sans-serif',
     primaryFontFamily2: 'Secular One,sans-serif',
-    primaryFontFamily3: 'Trocchi,sans-serif',
   },
   colors: {
     background: '#fefaf6',
