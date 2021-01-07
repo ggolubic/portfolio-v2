@@ -6,7 +6,10 @@ async function makePostsFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(filter: { fields: { collection: { eq: "work" } } }) {
+        allMdx(
+          filter: { fields: { collection: { eq: "work" } } }
+          sort: { order: ASC, fields: frontmatter___id }
+        ) {
           edges {
             node {
               body
@@ -100,7 +103,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: node.frontmatter.slug ? `/${node.frontmatter.slug}/` : generatedSlug,
+      value: node.frontmatter.slug ? `/${node.frontmatter.slug}` : generatedSlug,
     });
 
     // Add it to a collection

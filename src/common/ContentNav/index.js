@@ -52,7 +52,7 @@ const ContentNav = ({ prev, next, pathPrefix }) => {
           duration={0.8}
           to={`${pathPrefix}${prev.node.fields.slug}`}
         >
-          <Fade left={true} duration={1000} delay={300}>
+          <Fade left={true} duration={1000}>
             <strong>← Prev</strong>
             <p>{prev.node.frontmatter.title}</p>
           </Fade>
@@ -66,7 +66,7 @@ const ContentNav = ({ prev, next, pathPrefix }) => {
           duration={0.8}
           to={`${pathPrefix}${next.node.fields.slug}`}
         >
-          <Fade right={true} duration={1000} delay={300}>
+          <Fade right={true} duration={1000}>
             <strong>Next →</strong>
             <p> {next.node.frontmatter.title}</p>
           </Fade>

@@ -49,7 +49,6 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      excerpt
       fileAbsolutePath
       body
       frontmatter {

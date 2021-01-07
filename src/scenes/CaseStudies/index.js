@@ -70,8 +70,6 @@ const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...pro
 
   &:hover {
     box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.8);
-  }
-  &:hover ${CaseStudyText} {
     transform: translateY(-10px);
   }
 `;
@@ -140,6 +138,7 @@ const CaseStudyText = styled.div`
   max-width: 600px;
   line-height: 1.5;
   letter-spacing: 1px;
+  transition: 0.35s;
   @media ${device.tablet} {
     left: 45px;
     bottom: 45px;
@@ -147,6 +146,9 @@ const CaseStudyText = styled.div`
   @media ${device.laptop} {
     left: 90px;
     bottom: 90px;
+  }
+  ${CaseStudyLink}:hover & {
+    transform: translateY(-5px);
   }
 `;
 

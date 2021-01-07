@@ -6,10 +6,11 @@
 const path = require('path');
 
 module.exports = {
+  pathPrefix: '/',
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
-    description: 'Frontend Web Developer',
+    description: 'Web Developer',
   },
   plugins: [
     {
@@ -26,23 +27,17 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
       },
     },
+    `gatsby-plugin-react-helmet`,
     'gatsby-plugin-transition-link',
+    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'images',
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: 'work',
-        path: `${__dirname}/src/data/work`,
       },
     },
     {
@@ -54,14 +49,36 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'work',
+        path: `${__dirname}/src/data/work`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [
-          `gatsby-remark-copy-linked-files`,
+        plugins: [
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1500,
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+              withWebp: true,
+            },
+          },
+        ],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`],
+            },
+          },
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
               linkImagesToOriginal: false,
               withWebp: true,
             },
@@ -69,13 +86,5 @@ module.exports = {
         ],
       },
     },
-
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: 'data',
-    //     path: `${__dirname}/src/data/`,
-    //   },
-    // },
   ],
 };
