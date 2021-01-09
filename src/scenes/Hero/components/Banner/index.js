@@ -40,21 +40,24 @@ const Wrapper = styled.div`
 `;
 const ShortDescription = styled.p`
   color: ${({ theme }) => theme.fonts.secondaryFontColor};
-  font-size: 1.3em;
+  font-size: 1.1em;
   max-width: 700px;
   line-height: 2;
   margin-top: 15px;
-  @media ${device.tablet} {
+  @media ${device.mobileL} {
     font-size: 1.5em;
   }
 `;
 const Headline = styled.h1`
-  font-size: 3.3em;
+  font-size: 2.3em;
   line-height: 1.2;
   color: ${({ theme }) => theme.primaryFontColor};
   transition: 0.2s;
+  @media ${device.mobileM} {
+    font-size: 2.8em;
+  }
   @media ${device.mobileL} {
-    font-size: 4em;
+    font-size: 3.3em;
   }
   @media ${device.tablet} {
     font-size: 5.5em;
@@ -67,8 +70,6 @@ const Headline = styled.h1`
   }
 `;
 
-//https://gatsby-simplefolio.netlify.app/
-//https://github.com/cobidev/gatsby-simplefolio/blob/master/src/components/Hero/Hero.jsx
 const Banner = () => {
   return (
     <HeroWrapper>
@@ -79,8 +80,8 @@ const Banner = () => {
           Web developer.
         </Headline>
         <ShortDescription>
-          I also like playing with CI/CD stuff and contribute to Open Source when I find something
-          interesting.
+          I also enjoy playing with various other technologies, participating in community events
+          and helping out open source projects.
         </ShortDescription>
       </Wrapper>
       <ComplexDashboardSvg />

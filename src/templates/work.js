@@ -3,17 +3,32 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from 'gatsby-image';
+
 import H from 'common/MdxComponents/Headings';
 import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
 
+import { device } from 'consts/device';
+
 const WorkHeader = styled.div`
   & > h1 {
-    margin: 10% auto 0 15%;
+    margin-top: 10%;
     font-weight: 100;
+    font-size: 3em;
   }
   & > p {
-    margin: 0 auto 10% 15%;
+    width: 80%;
+    font-size: 1.2em;
+  }
+
+  @media ${device.tablet} {
+    & > h1 {
+      margin: 10% auto 0 15%;
+      font-size: 5em;
+    }
+    & > p {
+      margin: 0 auto 10% 15%;
+    }
   }
 `;
 
@@ -21,6 +36,7 @@ const Position = styled.p`
   color: var(--gray);
   font-size: 1.5em;
   letter-spacing: 1px;
+  line-height: 1.5;
 `;
 
 const Content = styled.div`

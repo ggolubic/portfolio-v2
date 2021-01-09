@@ -53,14 +53,17 @@ const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...pro
   width: 80%;
   margin: 0 auto;
   opacity: 1;
-  height: 290px;
+  height: 250px;
   background-color: #1c1d25;
   position: relative;
-  box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45);
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.35s ease;
   border-radius: 10px;
+  @media ${device.mobileL} {
+    height: 290px;
+  }
   @media ${device.tablet} {
     height: 340px;
   }
@@ -71,6 +74,9 @@ const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...pro
   &:hover {
     box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.8);
     transform: translateY(-10px);
+  }
+  @media ${device.tablet} {
+    box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.45);
   }
 `;
 const Title = styled.h3`

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
 :root{
-    --primary-color:#00cdac;
+    --primary-color:#fefaf6;
     --black:#101419;
     --gray:#656270;
 }
@@ -24,6 +24,11 @@ p {
     margin:0;
     color:inherit;
 };
+
+::selection{
+        background-color:#F5B700;
+        color:var(--black);
+}
 
 * {
   margin: 0;
