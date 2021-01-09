@@ -1,10 +1,8 @@
-import '@fontsource/secular-one';
-
 const theme = {
   fonts: {
     primaryFontColor: '#232320',
     secondaryFontColor: '#656270',
-    primaryFontFamily2: 'Secular One,sans-serif',
+    primaryFontFamily: 'Rubik,sans-serif',
   },
   colors: {
     background: '#fefaf6',

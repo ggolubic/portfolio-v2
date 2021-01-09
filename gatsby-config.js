@@ -27,12 +27,26 @@ module.exports = {
         templates: path.join(__dirname, 'src/templates'),
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Rubik\:400,600,700`, // you can also specify font weights and styles
+        ],
+        display: 'swap',
+      },
+    },
     `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-transition-link',
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/common/Layout`),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -65,6 +79,7 @@ module.exports = {
               maxWidth: 1200,
               linkImagesToOriginal: false,
               withWebp: true,
+              quality: 80,
             },
           },
         ],
@@ -81,6 +96,7 @@ module.exports = {
               maxWidth: 1200,
               linkImagesToOriginal: false,
               withWebp: true,
+              quality: 80,
             },
           },
         ],
