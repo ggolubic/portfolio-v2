@@ -105,7 +105,8 @@ const CTA = styled.button`
   font-family: ${({ theme }) => theme.fonts.primaryFontFamily};
   transition: 0.35s;
   cursor: pointer;
-  border: 1px solid var(--primary-color);
+  border: none;
+
   @media ${device.tablet} {
     font-size: 1em;
   }

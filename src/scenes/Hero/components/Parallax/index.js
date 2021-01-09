@@ -41,7 +41,7 @@ const shadowsBig = getMultipleStars(100);
 const Wrapper = styled.div`
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: 120%;
 `;
 
 const animStar = keyframes`
