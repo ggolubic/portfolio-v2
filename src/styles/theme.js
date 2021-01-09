@@ -3,7 +3,6 @@ const theme = {
     primaryFontColor: '#232320',
     secondaryFontColor: '#656270',
     primaryFontFamily: 'Rubik,sans-serif',
-    secondaryFontFamily: 'Secular One,sans-serif',
   },
   colors: {
     background: '#fefaf6',
