@@ -81,7 +81,13 @@ const Form = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper
+      onSubmit={handleSubmit(onSubmit)}
+      name="contact"
+      netlify
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="contact" />
       <Label>NAME</Label>
       <StyledInput name="name" ref={register({ required: true })} />
       {errors.name && <ErrorText>This field is required</ErrorText>}
