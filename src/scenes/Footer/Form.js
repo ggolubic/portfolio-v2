@@ -84,19 +84,20 @@ const Form = () => {
     <FormWrapper
       onSubmit={handleSubmit(onSubmit)}
       name="contact"
-      netlify
+      method="POST"
+      data-nelify="true"
       netlify-honeypot="bot-field"
     >
       <input type="hidden" name="form-name" value="contact" />
-      <Label>NAME</Label>
+      <Label htmlFor="name">NAME</Label>
       <StyledInput name="name" ref={register({ required: true })} />
       {errors.name && <ErrorText>This field is required</ErrorText>}
 
-      <Label>EMAIL</Label>
+      <Label htmlFor="email">EMAIL</Label>
       <StyledInput name="email" type="email" ref={register({ required: true })} />
       {errors.email && <ErrorText>This field is required</ErrorText>}
 
-      <Label>MESSAGE</Label>
+      <Label htmlFor="message">MESSAGE</Label>
       <StyledTextArea name="message" rows="5" ref={register({ required: true })} />
       {errors.message && <ErrorText>This field is required</ErrorText>}
 
