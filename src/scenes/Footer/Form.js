@@ -73,28 +73,28 @@ const ErrorText = styled.span`
   letter-spacing: 1px;
 `;
 
-//////////////////////////////////////////////////////////
-//TODO: IMPLEMENT MAILING SYSTEM WITH NETLIFY OR MAILCHIMP
-//////////////////////////////////////////////////////////
 const Form = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { register, errors } = useForm({ mode: 'onBlur' });
 
   return (
-    <FormWrapper
-      onSubmit={handleSubmit(onSubmit)}
-      name="contact"
-      method="POST"
-      data-nelify="true"
-      netlify-honeypot="bot-field"
-    >
+    <FormWrapper name="contact" method="POST" data-nelify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
       <Label htmlFor="name">NAME</Label>
-      <StyledInput name="name" ref={register({ required: true })} />
+      <StyledInput
+        name="name"
+        ref={register({
+          required: { value: true, message: 'Your name is required' },
+          min: { value: 3, message: 'Has to be at least 3 characters' },
+        })}
+      />
       {errors.name && <ErrorText>This field is required</ErrorText>}
 
       <Label htmlFor="email">EMAIL</Label>
-      <StyledInput name="email" type="email" ref={register({ required: true })} />
+      <StyledInput
+        name="email"
+        type="email"
+        ref={register({ required: 'Your email is required' })}
+      />
       {errors.email && <ErrorText>This field is required</ErrorText>}
 
       <Label htmlFor="message">MESSAGE</Label>
