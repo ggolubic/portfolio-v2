@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 
 import { device } from 'src/consts/device.js';
 
@@ -41,7 +41,7 @@ const Social = () => {
         target="_blank"
         type="linkedin"
       >
-        <FaLinkedinIn />
+        <FaLinkedinIn title="LinkedIn" />
       </IconContainer>
       <IconContainer
         href="https://github.com/ggolubic"
@@ -49,15 +49,7 @@ const Social = () => {
         target="_blank"
         type="github"
       >
-        <FaGithub />
-      </IconContainer>
-      <IconContainer
-        href="https://www.instagram.com/gabrijelgolubic"
-        rel="noopener"
-        target="_blank"
-        type="ig"
-      >
-        <FaInstagram />
+        <FaGithub title="Github" />
       </IconContainer>
     </SocialContainer>
   );

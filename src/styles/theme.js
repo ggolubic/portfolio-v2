@@ -13,7 +13,6 @@ const theme = {
     blue: '#007CBE',
     yellow: '#BEA57D',
     linkedin: '#0065de',
-    ig: '#bc2a8d',
     github: '#333',
   },
 };

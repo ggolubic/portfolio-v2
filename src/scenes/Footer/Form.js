@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import { animateScroll } from 'react-scroll';
 
+import useToast from 'common/Toast/useToast';
 import { device } from 'consts/device';
 
 const FormWrapper = styled.form`
@@ -73,25 +75,74 @@ const ErrorText = styled.span`
   letter-spacing: 1px;
 `;
 
-//////////////////////////////////////////////////////////
-//TODO: IMPLEMENT MAILING SYSTEM WITH NETLIFY OR MAILCHIMP
-//////////////////////////////////////////////////////////
 const Form = () => {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { setSuccessToast } = useToast();
+  const { register, errors, reset, handleSubmit } = useForm({ mode: 'onBlur' });
+
+  const encode = (data) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
+  const pushToNetlify = (data) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact',
+        ...data,
+      }),
+    })
+      .then(() => {
+        reset();
+        animateScroll.scrollToTop();
+        setSuccessToast(true);
+      })
+      .catch((error) => alert(error));
+  };
 
   return (
-    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <Label>NAME</Label>
-      <StyledInput name="name" ref={register({ required: true })} />
+    <FormWrapper
+      name="contact"
+      method="POST"
+      data-nelify="true"
+      onSubmit={handleSubmit(pushToNetlify)}
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <Label htmlFor="name">NAME</Label>
+      <StyledInput
+        id="name"
+        name="name"
+        aria-label="name"
+        aria-required="true"
+        ref={register({
+          required: { value: true, message: 'Your name is required' },
+          min: { value: 3, message: 'Has to be at least 3 characters' },
+        })}
+      />
       {errors.name && <ErrorText>This field is required</ErrorText>}
 
-      <Label>EMAIL</Label>
-      <StyledInput name="email" type="email" ref={register({ required: true })} />
+      <Label htmlFor="email">EMAIL</Label>
+      <StyledInput
+        id="email"
+        name="email"
+        aria-label="email"
+        aria-required="true"
+        type="email"
+        ref={register({ required: 'Your email is required' })}
+      />
       {errors.email && <ErrorText>This field is required</ErrorText>}
 
-      <Label>MESSAGE</Label>
-      <StyledTextArea name="message" rows="5" ref={register({ required: true })} />
+      <Label htmlFor="message">MESSAGE</Label>
+      <StyledTextArea
+        id="message"
+        name="message"
+        aria-label="message"
+        aria-required="true"
+        rows="5"
+        ref={register({ required: true })}
+      />
       {errors.message && <ErrorText>This field is required</ErrorText>}
 
       <StyledButton type="submit">SEND</StyledButton>

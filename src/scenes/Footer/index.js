@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Social from './Social';
 
 import { device } from 'consts/device';
 
+import Social from './Social';
 import Form from './Form';
 
 const Wrapper = styled.div`
