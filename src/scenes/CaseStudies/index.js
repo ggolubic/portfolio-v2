@@ -79,6 +79,7 @@ const CaseStudyLink = styled(({ backgroundImage, ...props }) => <AniLink {...pro
     box-shadow: 0 20px 80px 0 rgba(0, 0, 0, 0.45);
   }
 `;
+
 const Title = styled.h3`
   font-size: 1.5em;
   margin-bottom: 15px;
@@ -90,6 +91,7 @@ const Title = styled.h3`
     font-size: 3em;
   }
 `;
+
 const Description = styled.p`
   font-size: 1em;
   margin-bottom: 10px;
@@ -119,12 +121,8 @@ const CTA = styled.button`
   @media ${device.laptop} {
     font-size: 1.5em;
   }
-
-  //TODO
-  /* &:hover {
-    background-color: #bd4f6c;
-  } */
 `;
+
 const CaseStudyMask = styled.div`
   position: absolute;
   top: 0;
@@ -168,7 +166,7 @@ const CaseStudies = () => {
         <CaseStudiesList>
           {caseStudiesData.map((caseStudy, i) => (
             <li key={i}>
-              <Fade bottom={true} duration={1000} delay={300 * i} distance="30px">
+              <Fade bottom duration={1000} delay={300 * i} distance="30px">
                 <CaseStudyLink
                   paintDrip
                   hex="#fefaf6"
