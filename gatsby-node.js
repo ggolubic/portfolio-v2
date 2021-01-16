@@ -113,3 +113,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+
+  if (page.path.match(/404/)) {
+    page.context.layout = 'notfound';
+    createPage(page);
+  }
+};

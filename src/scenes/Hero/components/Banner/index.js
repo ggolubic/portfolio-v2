@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { device } from 'src/consts/device.js';
-import ComplexDashboardSvg from 'src/images/complex-dashboard.svg';
+import ComplexDashboardSvg from 'src/assets/svgs/complex-dashboard.svg';
 
 const Name = styled.span`
   color: var(--primary-color);

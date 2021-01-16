@@ -22,7 +22,7 @@ const ContentStyles = styled.div`
   padding: 0 2rem;
 `;
 
-const Layout = ({ location, title, children, className, pageContext, path, uri, ...rest }) => {
+const Layout = ({ title, children, pageContext, uri }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -37,7 +37,7 @@ const Layout = ({ location, title, children, className, pageContext, path, uri, 
         <MDXProvider components={mdxComponents}>
           <ContentStyles>{children}</ContentStyles>
         </MDXProvider>
-        <Footer />
+        {pageContext.layout !== 'notfound' && <Footer />}
       </LayoutStyles>
     </ThemeProvider>
   );

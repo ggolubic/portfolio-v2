@@ -22,7 +22,7 @@ module.exports = {
         scenes: path.join(__dirname, 'src/scenes'),
         consts: path.join(__dirname, 'src/consts'),
         styles: path.join(__dirname, 'src/styles'),
-        images: path.join(__dirname, 'src/images'),
+        assets: path.join(__dirname, 'src/assets'),
         utils: path.join(__dirname, 'src/utils'),
         templates: path.join(__dirname, 'src/templates'),
       },
@@ -30,9 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `Rubik\:400,600,700`, // you can also specify font weights and styles
-        ],
+        fonts: [`Rubik\:400,600,700`],
         display: 'swap',
       },
     },
@@ -51,14 +49,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
     {
       resolve: `gatsby-plugin-react-svg`,
       options: {
         rule: {
-          include: /images/,
+          include: /\.svg$/,
         },
       },
     },
