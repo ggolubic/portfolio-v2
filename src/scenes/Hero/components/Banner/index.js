@@ -25,7 +25,6 @@ const HeroWrapper = styled.div`
   }
   @media ${device.laptop} {
     flex-direction: row;
-    width: 90%;
   }
 `;
 
@@ -40,16 +39,17 @@ const Wrapper = styled.div`
 `;
 const ShortDescription = styled.p`
   color: ${({ theme }) => theme.fonts.secondaryFontColor};
-  font-size: 1.1em;
+  font-size: 1.4em;
   max-width: 700px;
   line-height: 2;
   margin-top: 15px;
+  text-align: justify;
   @media ${device.mobileL} {
     font-size: 1.5em;
   }
 `;
 const Headline = styled.h1`
-  font-size: 2.3em;
+  font-size: 2.6em;
   line-height: 1.2;
   color: ${({ theme }) => theme.primaryFontColor};
   transition: 0.2s;
