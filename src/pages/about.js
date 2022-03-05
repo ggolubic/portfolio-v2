@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const Image = ({ image }) => {
   return (
     <Wrapper>
-      <Img fluid={image.childImageSharp.fluid} alt="Its me" />
+      <Img fluid={image.childImageSharp.fluid} alt="A picture of me hoarding registers" />
     </Wrapper>
   );
 };
@@ -113,24 +113,24 @@ const About = ({ data }) => {
         <Image image={data.profileImage} />
         <div>
           <Highlight>
-            I’m Gabrijel, a Web developer working for{' '}
+            I’m Gabrijel, a software engineer working for{' '}
             <Link href="https://seekandhit.com/" rel="noopener noreferrer" target="_blank">
               SeekandHit
             </Link>{' '}
             in sunny Split, Croatia.
           </Highlight>
           <Info>
-            Spending the better part of my life interacting with computers, I was always curious
+            Spending the better part of my life interacting with computers, I've always been curious
             about how things were made. I soon realized I had a passion for programming and for the
-            past two-ish years, I've been working as a Web developer.
+            past three years, I've been working as a software engineer.
           </Info>
           <Info>
             These days I mostly spend my time researching new stuff, coding and helping out open
             source libraries.
           </Info>
           <Info>
-            Out of the office you’ll probably find me playing videogames, enjoying food and beer,
-            finishing my Masters degree, and petting all the dogs.
+            Out of the office you’ll probably find me playing videogames, in the gym, enjoying food
+            and beer, and petting all the dogs.
           </Info>
         </div>
       </SectionContent>
@@ -144,7 +144,7 @@ export const query = graphql`
   query ProfileImageQuery {
     profileImage: file(relativePath: { eq: "pp.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 450, maxHeight: 350, quality: 100, grayscale: true) {
+        fluid(maxWidth: 450, maxHeight: 350, quality: 100) {
           ...GatsbyImageSharpFluid
         }
       }

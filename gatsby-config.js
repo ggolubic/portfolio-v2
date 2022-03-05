@@ -7,7 +7,7 @@ module.exports = {
     author: 'Gabrijel Golubic',
     description: 'Web Developer',
   },
-  flags: { PRESERVE_WEBPACK_CACHE: true, FAST_DEV: true, DEV_SSR: true },
+  flags: { FAST_DEV: true, DEV_SSR: true },
   plugins: [
     {
       resolve: 'gatsby-plugin-root-import',
