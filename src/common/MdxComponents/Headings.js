@@ -22,6 +22,7 @@ const HStyles = styled.h1`
   color: var(--black);
   letter-spacing: 2px;
   margin-top: 100px;
+  margin-bottom: 15px;
   @media (max-width: 450px) {
     font-size: 2rem;
   }

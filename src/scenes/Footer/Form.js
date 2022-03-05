@@ -72,12 +72,13 @@ const StyledButton = styled.button`
 const ErrorText = styled.span`
   color: red;
   margin-top: 5px;
+  font-weight: bold;
   letter-spacing: 1px;
 `;
 
 const Form = () => {
   const { setSuccessToast } = useToast();
-  const { register, errors, reset, handleSubmit } = useForm({ mode: 'onBlur' });
+  const { register, errors, reset, handleSubmit } = useForm({ mode: 'onSubmit' });
 
   const encode = (data) => {
     return Object.keys(data)
@@ -113,37 +114,34 @@ const Form = () => {
       <Label htmlFor="name">NAME</Label>
       <StyledInput
         id="name"
-        name="name"
+        {...register('name', {
+          required: { value: true, message: 'Your name is required.' },
+          min: { value: 3, message: 'Has to be at least 3 characters.' },
+        })}
         aria-label="name"
         aria-required="true"
-        ref={register({
-          required: { value: true, message: 'Your name is required' },
-          min: { value: 3, message: 'Has to be at least 3 characters' },
-        })}
       />
-      {errors.name && <ErrorText>This field is required</ErrorText>}
+      {errors?.name && <ErrorText>{errors.name.message}</ErrorText>}
 
       <Label htmlFor="email">EMAIL</Label>
       <StyledInput
         id="email"
-        name="email"
+        {...register('email', { required: 'Your email is required' })}
         aria-label="email"
         aria-required="true"
         type="email"
-        ref={register({ required: 'Your email is required' })}
       />
-      {errors.email && <ErrorText>This field is required</ErrorText>}
+      {errors?.email && <ErrorText>{errors.email.message}</ErrorText>}
 
       <Label htmlFor="message">MESSAGE</Label>
       <StyledTextArea
         id="message"
-        name="message"
+        {...register('message', { required: true })}
         aria-label="message"
         aria-required="true"
         rows="5"
-        ref={register({ required: true })}
       />
-      {errors.message && <ErrorText>This field is required</ErrorText>}
+      {errors?.message && <ErrorText>This field is required</ErrorText>}
 
       <StyledButton type="submit">SEND</StyledButton>
     </FormWrapper>

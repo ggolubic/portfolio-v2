@@ -25,14 +25,17 @@ p {
     color:inherit;
 };
 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 ::selection{
         background-color:#F5B700;
         color:var(--black);
 }
-
-* {
-  margin: 0;
-  padding: 0;
-}`;
+`;
 
 export default GlobalStyles;

@@ -18,14 +18,28 @@ const HeroWrapper = styled.div`
     width: 100%;
   }
 
+  @media ${device.laptop} {
+    flex-direction: row;
+  }
+`;
+
+const IllustrationWrapper = styled.div`
   & > svg {
+    display: block;
     width: 90%;
     height: auto;
     z-index: 5;
+    margin: 0 auto;
+  }
+  @media ${device.tablet} {
+    & > svg {
+      width: 70%;
+    }
   }
   @media ${device.laptop} {
-    flex-direction: row;
-    width: 90%;
+    & > svg {
+      width: 90%;
+    }
   }
 `;
 
@@ -34,39 +48,62 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   z-index: 5;
+  margin-bottom: 40px;
+
   @media ${device.laptop} {
     text-align: left;
+    margin-bottom: 0px;
   }
 `;
+
 const ShortDescription = styled.p`
   color: ${({ theme }) => theme.fonts.secondaryFontColor};
-  font-size: 1.1em;
-  max-width: 700px;
+  font-size: 1.2em;
+  margin: 15px auto 0px;
   line-height: 2;
-  margin-top: 15px;
+  text-align: justify;
   @media ${device.mobileL} {
     font-size: 1.5em;
   }
-`;
-const Headline = styled.h1`
-  font-size: 2.3em;
-  line-height: 1.2;
-  color: ${({ theme }) => theme.primaryFontColor};
-  transition: 0.2s;
-  @media ${device.mobileM} {
-    font-size: 2.8em;
-  }
   @media ${device.mobileL} {
-    font-size: 3.3em;
+    max-width: 700px;
   }
-  @media ${device.tablet} {
-    font-size: 5.5em;
+`;
+const Headline = styled.div`
+  transition: 0.2s;
+  line-height: 1.2;
+  text-align: center;
+  color: ${({ theme }) => theme.primaryFontColor};
+  & > h1 {
+    font-size: 2.6em;
+    @media ${device.mobileM} {
+      font-size: 2.8em;
+    }
+    @media ${device.mobileL} {
+      font-size: 3.3em;
+    }
+    @media ${device.tablet} {
+      font-size: 5.5em;
+    }
+    @media ${device.laptop} {
+      text-align: left;
+    }
+    @media ${device.desktop} {
+      font-size: 6em;
+    }
   }
-  @media ${device.laptop} {
-    font-size: 5.5em;
-  }
-  @media ${device.desktop} {
-    font-size: 7em;
+  & > h2 {
+    font-size: 2.4em;
+
+    @media ${device.mobileL} {
+      font-size: 2.8em;
+    }
+    @media ${device.tablet} {
+      font-size: 4.5em;
+    }
+    @media ${device.laptop} {
+      text-align: left;
+    }
   }
 `;
 
@@ -75,16 +112,19 @@ const Banner = () => {
     <HeroWrapper>
       <Wrapper>
         <Headline>
-          Hi, I'm <Name>Gabrijel.</Name>
-          <br />
-          Web developer.
+          <h1>
+            Hi, I'm <Name>Gabrijel.</Name>
+          </h1>
+          <h2>Software engineer.</h2>
         </Headline>
         <ShortDescription>
           I also enjoy playing with various other technologies, participating in community events
           and helping out open source projects.
         </ShortDescription>
       </Wrapper>
-      <ComplexDashboardSvg />
+      <IllustrationWrapper>
+        <ComplexDashboardSvg />
+      </IllustrationWrapper>
     </HeroWrapper>
   );
 };
