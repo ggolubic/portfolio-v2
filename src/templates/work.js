@@ -2,11 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
-import H from 'common/MdxComponents/Headings';
+import Heading from 'common/MdxComponents/Headings';
 import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
+import Layout from 'common/Layout';
 
 import { device } from 'consts/device';
 
@@ -44,11 +45,11 @@ const Content = styled.div`
   margin: 0 auto;
 `;
 
-const Image = styled(Img)`
-  width: 40px;
+const Image = styled(GatsbyImage)`
   height: 40px;
   margin-left: 10px;
   display: inline-block;
+  vertical-align: baseline !important;
   @media (max-width: 450px) {
     width: 20px;
     height: 20px;
@@ -56,7 +57,7 @@ const Image = styled(Img)`
 `;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -74,9 +75,7 @@ export const pageQuery = graphql`
         position
         logo {
           childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: CONSTRAINED)
           }
         }
       }
@@ -89,17 +88,17 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
   }
 
   return (
-    <>
+    <Layout>
       <WorkMetaTags work={work} />
       <WorkHeader>
-        <H>
+        <Heading>
           {work.frontmatter.title}
           <Image
-            fluid={work.frontmatter.logo.childImageSharp.fluid}
+            image={work.frontmatter.logo.childImageSharp.gatsbyImageData}
             alt={`${work.frontmatter.title}-logo`}
-            imgStyle={{ objectFit: 'scale-down' }}
+            imgStyle={{ objectFit: 'contain' }}
           />
-        </H>
+        </Heading>
         <Position>
           {work.frontmatter.position} / {work.frontmatter.year}
         </Position>
@@ -112,7 +111,7 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
           next={pageContext.next}
         />
       </Content>
-    </>
+    </Layout>
   );
 }
 

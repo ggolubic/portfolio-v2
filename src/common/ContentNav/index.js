@@ -14,17 +14,22 @@ const StyledContentNav = styled.div`
   a {
     display: flex;
     flex-direction: column;
-
+    div {
+      border: 1px solid var(--gray);
+      border-radius: 3px;
+    }
     strong,
     p {
-      border: 1px solid var(--gray);
       font-size: 1.5em;
       @media (max-width: 450px) {
         font-size: 1em;
       }
     }
     strong {
-      border-radius: 3px 3px 0 0;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid var(--gray);
       padding: 5px 50px;
       @media (max-width: 450px) {
         padding: 5px 20px;
@@ -33,8 +38,6 @@ const StyledContentNav = styled.div`
 
     p {
       padding: 20px 50px;
-      border-top: none;
-      border-radius: 0 0 3px 3px;
       @media (max-width: 450px) {
         padding: 10px 20px;
       }
@@ -53,8 +56,10 @@ const ContentNav = ({ prev, next, pathPrefix }) => {
           to={`${pathPrefix}${prev.node.fields.slug}`}
         >
           <Fade left={true} duration={1000}>
-            <strong>← Prev</strong>
-            <p>{prev.node.frontmatter.title}</p>
+            <div>
+              <strong>← Prev</strong>
+              <p>{prev.node.frontmatter.title}</p>
+            </div>
           </Fade>
         </AniLink>
       )}
@@ -67,8 +72,10 @@ const ContentNav = ({ prev, next, pathPrefix }) => {
           to={`${pathPrefix}${next.node.fields.slug}`}
         >
           <Fade right={true} duration={1000}>
-            <strong>Next →</strong>
-            <p> {next.node.frontmatter.title}</p>
+            <div>
+              <strong>Next →</strong>
+              <p> {next.node.frontmatter.title}</p>
+            </div>
           </Fade>
         </AniLink>
       )}

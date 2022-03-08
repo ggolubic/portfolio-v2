@@ -5,8 +5,9 @@ module.exports = {
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
-    description: 'Web Developer',
+    description: 'Software engineer based in Split, Croatia',
   },
+  trailingSlash: 'always',
   flags: { FAST_DEV: true, DEV_SSR: true },
   plugins: [
     {
@@ -31,16 +32,11 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
+    'gatsby-plugin-image',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: 'gatsby-plugin-transition-link',
-      options: {
-        layout: require.resolve(`./src/common/Layout`),
-      },
-    },
+    'gatsby-plugin-transition-link',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
