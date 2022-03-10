@@ -7,8 +7,8 @@ module.exports = {
     author: 'Gabrijel Golubic',
     description: 'Software engineer based in Split, Croatia',
   },
-  trailingSlash: 'always',
-  flags: { FAST_DEV: true, DEV_SSR: true },
+  trailingSlash: 'never',
+  flags: { FAST_DEV: true },
   plugins: [
     {
       resolve: 'gatsby-plugin-root-import',
@@ -36,7 +36,12 @@ module.exports = {
     'gatsby-plugin-image',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    'gatsby-plugin-transition-link',
+    {
+      resolve: 'gatsby-plugin-transition-link',
+      options: {
+        layout: require.resolve(`./src/common/Layout`),
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

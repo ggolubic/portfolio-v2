@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { device } from 'consts/device';
 
@@ -18,10 +18,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const Image = ({ image }) => {
+const Image = ({ data }) => {
   return (
     <Wrapper>
-      <Img fluid={image.childImageSharp.fluid} alt="A picture of me hoarding registers" />
+      <GatsbyImage
+        image={data.file.childImageSharp.gatsbyImageData}
+        alt="A picture of me hoarding registers"
+      />
     </Wrapper>
   );
 };
@@ -109,8 +112,16 @@ const About = ({ data }) => {
   return (
     <Section id="about">
       <Helmet htmlAttributes={{ lang: 'en' }} title="Gabrijel Golubic | About" />
+      <Helmet>
+        <title>Gabrijel Golubic | Software engineer | About</title>
+        <meta
+          name="description"
+          content="Hi, I'm Gabrijel. A software engineer. I mostly work with frontend techologies bringing products from technical discovery to
+          life."
+        />
+      </Helmet>
       <SectionContent>
-        <Image image={data.profileImage} />
+        <Image data={data} />
         <div>
           <Highlight>
             I’m Gabrijel, a software engineer working for{' '}
@@ -129,8 +140,8 @@ const About = ({ data }) => {
             source libraries.
           </Info>
           <Info>
-            Out of the office you’ll probably find me playing videogames, in the gym, enjoying food
-            and beer, and petting all the dogs.
+            Out of the office you’ll probably find me playing videogames, in the gym, enjoying food,
+            and petting all the dogs.
           </Info>
         </div>
       </SectionContent>
@@ -141,12 +152,10 @@ const About = ({ data }) => {
 export default About;
 
 export const query = graphql`
-  query ProfileImageQuery {
-    profileImage: file(relativePath: { eq: "pp.jpg" }) {
+  query AboutPageImageQuery {
+    file(relativePath: { eq: "pp.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 450, maxHeight: 350, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(layout: CONSTRAINED)
       }
     }
   }

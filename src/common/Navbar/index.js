@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import { StaticImage } from 'gatsby-plugin-image';
 
 import { device } from 'consts/device';
 
@@ -105,9 +106,23 @@ const LinkContent = styled.span`
     }
   }
 `;
+
+const LogoImage = () => {
+  return (
+    <StaticImage
+      src="../../assets/images/logo.png"
+      alt="My initial"
+      placeholder="blurred"
+      layout="fixed"
+      width={40}
+      height={40}
+    />
+  );
+};
+
 //uri=/about, to=/about
-const Link = ({ uri, text, to, id }) => {
-  if (uri === to) {
+const Link = ({ internal, text, to, id, uri, children }) => {
+  if (uri === to || internal) {
     return (
       <StyledScrollLink
         activeClass="active"
@@ -117,19 +132,27 @@ const Link = ({ uri, text, to, id }) => {
         duration={1000}
         offset={-100}
       >
-        <LinkContent>{text}</LinkContent>
+        <LinkContent>{text || children}</LinkContent>
       </StyledScrollLink>
     );
   }
+
   return (
     <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to}>
-      <LinkContent>{text}</LinkContent>
+      <LinkContent>{text || children}</LinkContent>
     </StyledDirectLink>
   );
 };
 
 const Navbar = ({ location }) => {
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleScroll = () => {
     if (window.scrollY > 50 && !scrolled) {
@@ -139,23 +162,16 @@ const Navbar = ({ location }) => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to="/">
-          LOGO
-        </StyledDirectLink>
+        <Link to="/" internal={location === '/'} uri={location} id="top">
+          <LogoImage />
+        </Link>
         <LinksWrapper>
-          <Link uri={location} id="work" to="/" text="Work" />
+          <Link uri={location} internal={location === '/'} id="work" to="/#work" text="Work" />
           <Link uri={location} id="about" to="/about" text="About" />
-          <Link uri={location} id="contact" to={location} text="Contact" />
+          <Link uri={location} internal id="contact" to={location} text="Contact" />
         </LinksWrapper>
       </Wrapper>
     </OuterWrapper>

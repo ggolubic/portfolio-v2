@@ -22,22 +22,16 @@ const ContentStyles = styled.div`
   padding: 0 2rem;
 `;
 
-const Layout = ({ title, children, pageContext, uri }) => {
+const Layout = ({ children, pageContext, uri }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Helmet>
-        <title>{title}</title>
-        <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-        <meta name="theme-color" content="#fefaf6" />
-      </Helmet>
       <LayoutStyles>
-        <Navbar pageContext={pageContext} location={uri} />
+        <Navbar location={uri} />
         <MDXProvider components={mdxComponents}>
           <ContentStyles>{children}</ContentStyles>
         </MDXProvider>
-        {pageContext.layout !== 'notfound' && <Footer />}
+        {pageContext?.layout !== 'notfound' && <Footer />}
       </LayoutStyles>
     </ThemeProvider>
   );

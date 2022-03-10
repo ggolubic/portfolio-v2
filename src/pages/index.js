@@ -5,10 +5,18 @@ import Hero from 'scenes/Hero';
 import Work from 'scenes/CaseStudies';
 import Toast from 'common/Toast';
 
-const HomePage = ({ data, path }) => {
+const HomePage = () => {
   return (
-    <div style={{ overflow: 'hidden' }}>
-      <Helmet htmlAttributes={{ lang: 'en' }} title="Gabrijel Golubic | Web Dev" />
+    <div id="top">
+      <Helmet>
+        <title>Gabrijel Golubic | Software engineer</title>
+        <meta
+          name="description"
+          content="Hi, I'm Gabrijel. A software engineer. I mostly work with frontend techologies bringing products from technical discovery to
+          life."
+        />
+        <meta name="theme-color" content="#fefaf6" />
+      </Helmet>
       <Hero />
       <Work />
       <Toast />

@@ -62,6 +62,7 @@ const ShortDescription = styled.p`
   margin: 15px auto 0px;
   line-height: 2;
   text-align: justify;
+  z-index: 5;
   @media ${device.mobileL} {
     font-size: 1.5em;
   }
@@ -118,8 +119,8 @@ const Banner = () => {
           <h2>Software engineer.</h2>
         </Headline>
         <ShortDescription>
-          I also enjoy playing with various other technologies, participating in community events
-          and helping out open source projects.
+          I mostly work with frontend techologies bringing products from technical discovery to
+          life. I also like exploring new techologies and occasionally contribute to open source.
         </ShortDescription>
       </Wrapper>
       <IllustrationWrapper>

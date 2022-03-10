@@ -1,8 +1,8 @@
-const React = import('react');
-const theme = import('./src/styles/theme');
-const ToastProvider = import('./src/common/Toast/ToastProvider');
+const React = require('react');
+const theme = require('./src/styles/theme').default;
+const ToastProvider = require('./src/common/Toast/ToastProvider').default;
 
-export const onInitialClientRender = () => {
+exports.onInitialClientRender = () => {
   const root = document.documentElement;
   root.style.setProperty('--primary-color', randomColor());
 };
@@ -24,4 +24,4 @@ const randomColor = () => {
   }
 };
 
-export const wrapRootElement = ({ element }) => <ToastProvider>{element}</ToastProvider>;
+exports.wrapRootElement = ({ element }) => <ToastProvider>{element}</ToastProvider>;
