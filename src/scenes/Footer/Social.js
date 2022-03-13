@@ -8,7 +8,7 @@ export const SocialContainer = styled.div`
   display: flex;
   width: 200px;
   margin: 50px auto 0;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   transition: 0.2s;
 `;

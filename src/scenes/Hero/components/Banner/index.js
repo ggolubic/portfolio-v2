@@ -24,6 +24,8 @@ const HeroWrapper = styled.div`
 `;
 
 const IllustrationWrapper = styled.div`
+  z-index: 4;
+
   & > svg {
     display: block;
     width: 90%;

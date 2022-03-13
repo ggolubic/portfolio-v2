@@ -73,15 +73,19 @@ const SectionContent = styled.div`
   & > :first-child {
     max-width: 580px;
     height: auto;
-    width: 100%;
-    margin: 0 auto;
     margin-bottom: 50px;
   }
   .gatsby-image-wrapper {
     border-radius: 10px;
     box-shadow: 0px 5px 15px -7px rgb(0 0 0 / 75%);
+    height: 200px;
   }
 
+  @media ${device.mobileL} {
+    .gatsby-image-wrapper {
+      height: auto;
+    }
+  }
   @media ${device.laptopM} {
     flex-direction: row;
     margin: 100px auto;
@@ -95,17 +99,27 @@ const SectionContent = styled.div`
 `;
 
 const Highlight = styled.h1`
-  font-size: 2.5em;
+  font-size: 1.8em;
   line-height: 1.5;
   margin-bottom: 25px;
+
+  @media ${device.mobileL} {
+    font-size: 2.2em;
+  }
+  @media ${device.tablet} {
+    font-size: 2.5em;
+  }
 `;
 
 const Info = styled.p`
   text-align: justify;
   line-height: 2;
   color: var(--gray);
-  font-size: 1.4em;
+  font-size: 1.3em;
   margin-bottom: 20px;
+  @media ${device.tablet} {
+    font-size: 1.4em;
+  }
 `;
 
 const About = ({ data }) => {
@@ -116,8 +130,7 @@ const About = ({ data }) => {
         <title>Gabrijel Golubic | Software engineer | About</title>
         <meta
           name="description"
-          content="Hi, I'm Gabrijel. A software engineer. I mostly work with frontend techologies bringing products from technical discovery to
-          life."
+          content="Welcome to my About section where you can find out some interesting things about my background :)"
         />
       </Helmet>
       <SectionContent>
@@ -136,8 +149,8 @@ const About = ({ data }) => {
             past three years, I've been working as a software engineer.
           </Info>
           <Info>
-            These days I mostly spend my time researching new stuff, coding and helping out open
-            source libraries.
+            These days I mostly spend my time researching new stuff, coding and trying my best to
+            improve my padawans' skills.
           </Info>
           <Info>
             Out of the office you’ll probably find me playing videogames, in the gym, enjoying food,
@@ -155,7 +168,7 @@ export const query = graphql`
   query AboutPageImageQuery {
     file(relativePath: { eq: "pp.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED)
+        gatsbyImageData(layout: CONSTRAINED, formats: [AUTO, WEBP, AVIF])
       }
     }
   }

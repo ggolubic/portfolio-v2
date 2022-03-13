@@ -27,7 +27,7 @@ const StyledInput = styled.input`
   &:focus {
     box-shadow: none;
     box-shadow: var(--primary-color) 0px 0px 0px 2px inset;
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
 `;
 
@@ -49,7 +49,7 @@ const StyledTextArea = styled.textarea`
   &:focus {
     box-shadow: none;
     box-shadow: var(--primary-color) 0px 0px 0px 2px inset;
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
 `;
 
@@ -65,7 +65,7 @@ const StyledButton = styled.button`
   color: white;
   letter-spacing: 1px;
   &:hover {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.8);
   }
 `;
 

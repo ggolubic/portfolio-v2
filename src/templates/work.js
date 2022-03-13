@@ -7,37 +7,48 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import Heading from 'common/MdxComponents/Headings';
 import ContentNav from 'common/ContentNav';
 import { WorkMetaTags } from 'common/MetaTags';
-import Layout from 'common/Layout';
 
 import { device } from 'consts/device';
 
-const WorkHeader = styled.div`
+const WorkHeader = styled.div``;
+
+const NameAndImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+  transition: 0.2s;
+
   & > h1 {
-    margin-top: 10%;
     font-weight: 100;
-    font-size: 3em;
-  }
-  & > p {
-    width: 80%;
-    font-size: 1.2em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 2.5em;
   }
 
   @media ${device.tablet} {
+    margin: 10% auto 0 15%;
     & > h1 {
-      margin: 10% auto 0 15%;
-      font-size: 5em;
+      font-size: 4em;
     }
-    & > p {
-      margin: 0 auto 10% 15%;
+  }
+  @media ${device.laptop} {
+    & > h1 {
+      font-size: 4.5em;
     }
   }
 `;
 
 const Position = styled.p`
   color: var(--gray);
-  font-size: 1.5em;
+  width: 80%;
+  margin-top: 15px;
+  font-size: 1.2em;
   letter-spacing: 1px;
   line-height: 1.5;
+
+  @media ${device.tablet} {
+    margin: 0 auto 10% 15%;
+  }
 `;
 
 const Content = styled.div`
@@ -49,11 +60,6 @@ const Image = styled(GatsbyImage)`
   height: 40px;
   margin-left: 10px;
   display: inline-block;
-  vertical-align: baseline !important;
-  @media (max-width: 450px) {
-    width: 20px;
-    height: 20px;
-  }
 `;
 
 export const pageQuery = graphql`
@@ -75,7 +81,7 @@ export const pageQuery = graphql`
         position
         logo {
           childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED)
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
           }
         }
       }
@@ -88,17 +94,17 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
   }
 
   return (
-    <Layout>
+    <>
       <WorkMetaTags work={work} />
       <WorkHeader>
-        <Heading>
-          {work.frontmatter.title}
+        <NameAndImageWrapper>
+          <Heading>{work.frontmatter.title}</Heading>
           <Image
             image={work.frontmatter.logo.childImageSharp.gatsbyImageData}
             alt={`${work.frontmatter.title}-logo`}
             imgStyle={{ objectFit: 'contain' }}
           />
-        </Heading>
+        </NameAndImageWrapper>
         <Position>
           {work.frontmatter.position} / {work.frontmatter.year}
         </Position>
@@ -111,7 +117,7 @@ function WorkTemplate({ data: { mdx: work }, scope, pageContext }) {
           next={pageContext.next}
         />
       </Content>
-    </Layout>
+    </>
   );
 }
 

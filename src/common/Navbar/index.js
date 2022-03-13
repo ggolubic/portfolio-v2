@@ -37,7 +37,7 @@ const LinksWrapper = styled.div`
 `;
 
 const StyledScrollLink = styled(ScrollLink)`
-  padding: 20px 10px;
+  padding: ${({ isLogo }) => (isLogo ? '10px' : '20px 10px')};
   font-weight: 700;
   font-size: 1.3em;
   text-transform: uppercase;
@@ -50,12 +50,12 @@ const StyledScrollLink = styled(ScrollLink)`
     color: var(--primary-color);
   }
   @media ${device.tablet} {
-    padding: 20px;
+    padding: ${({ isLogo }) => !isLogo && '20px'};
   }
 `;
 
 const StyledDirectLink = styled(AniLink)`
-  padding: 20px 10px;
+  padding: ${({ isLogo }) => (isLogo ? '10px' : '20px 10px')};
   font-weight: 700;
   font-size: 1.3em;
   text-transform: uppercase;
@@ -68,7 +68,7 @@ const StyledDirectLink = styled(AniLink)`
     color: var(--primary-color);
   }
   @media ${device.tablet} {
-    padding: 20px;
+    padding: ${({ isLogo }) => !isLogo && '20px'};
   }
 `;
 
@@ -113,7 +113,6 @@ const LogoImage = () => {
       src="../../assets/images/logo.png"
       alt="My initial"
       placeholder="blurred"
-      layout="fixed"
       width={40}
       height={40}
     />
@@ -121,7 +120,7 @@ const LogoImage = () => {
 };
 
 //uri=/about, to=/about
-const Link = ({ internal, text, to, id, uri, children }) => {
+const Link = ({ internal, text, to, id, uri, isLogo, children }) => {
   if (uri === to || internal) {
     return (
       <StyledScrollLink
@@ -131,15 +130,16 @@ const Link = ({ internal, text, to, id, uri, children }) => {
         smooth={true}
         duration={1000}
         offset={-100}
+        isLogo={isLogo}
       >
-        <LinkContent>{text || children}</LinkContent>
+        {children ? children : <LinkContent>{text}</LinkContent>}
       </StyledScrollLink>
     );
   }
 
   return (
-    <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to}>
-      <LinkContent>{text || children}</LinkContent>
+    <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to} isLogo={isLogo}>
+      {children ? children : <LinkContent>{text}</LinkContent>}
     </StyledDirectLink>
   );
 };
@@ -165,7 +165,7 @@ const Navbar = ({ location }) => {
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <Link to="/" internal={location === '/'} uri={location} id="top">
+        <Link to="/" internal={location === '/'} uri={location} id="top" isLogo>
           <LogoImage />
         </Link>
         <LinksWrapper>
