@@ -29,10 +29,13 @@ async function makePostsFromMdx({ graphql, actions }) {
     console.error(errors);
     throw new Error('There was an error');
   }
+
   const work = data.allMdx.edges;
+
   work.forEach(({ node }, i) => {
     const prev = work[i - 1] || null;
     const next = work[i + 1] || null;
+
     actions.createPage({
       path: node.fields.slug,
       component: workPost,
@@ -78,7 +81,6 @@ async function paginate({ graphql, actions, collection, pathPrefix, component })
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     // paginate({

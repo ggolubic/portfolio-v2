@@ -5,9 +5,10 @@ module.exports = {
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
-    description: 'Web Developer',
+    description: 'Software engineer based in Split, Croatia',
   },
-  flags: { FAST_DEV: true, DEV_SSR: true },
+  trailingSlash: 'never',
+  flags: { FAST_DEV: true },
   plugins: [
     {
       resolve: 'gatsby-plugin-root-import',
@@ -31,8 +32,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-styled-components`,
+    'gatsby-plugin-image',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

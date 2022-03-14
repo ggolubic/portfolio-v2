@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
+import { StaticImage } from 'gatsby-plugin-image';
 
 import { device } from 'consts/device';
 
@@ -36,7 +37,7 @@ const LinksWrapper = styled.div`
 `;
 
 const StyledScrollLink = styled(ScrollLink)`
-  padding: 20px 10px;
+  padding: ${({ isLogo }) => (isLogo ? '10px' : '20px 10px')};
   font-weight: 700;
   font-size: 1.3em;
   text-transform: uppercase;
@@ -49,12 +50,12 @@ const StyledScrollLink = styled(ScrollLink)`
     color: var(--primary-color);
   }
   @media ${device.tablet} {
-    padding: 20px;
+    padding: ${({ isLogo }) => !isLogo && '20px'};
   }
 `;
 
 const StyledDirectLink = styled(AniLink)`
-  padding: 20px 10px;
+  padding: ${({ isLogo }) => (isLogo ? '10px' : '20px 10px')};
   font-weight: 700;
   font-size: 1.3em;
   text-transform: uppercase;
@@ -67,7 +68,7 @@ const StyledDirectLink = styled(AniLink)`
     color: var(--primary-color);
   }
   @media ${device.tablet} {
-    padding: 20px;
+    padding: ${({ isLogo }) => !isLogo && '20px'};
   }
 `;
 
@@ -105,9 +106,22 @@ const LinkContent = styled.span`
     }
   }
 `;
+
+const LogoImage = () => {
+  return (
+    <StaticImage
+      src="../../assets/images/logo.png"
+      alt="My initial"
+      placeholder="blurred"
+      width={40}
+      height={40}
+    />
+  );
+};
+
 //uri=/about, to=/about
-const Link = ({ uri, text, to, id }) => {
-  if (uri === to) {
+const Link = ({ internal, text, to, id, uri, isLogo, children }) => {
+  if (uri === to || internal) {
     return (
       <StyledScrollLink
         activeClass="active"
@@ -116,20 +130,29 @@ const Link = ({ uri, text, to, id }) => {
         smooth={true}
         duration={1000}
         offset={-100}
+        isLogo={isLogo}
       >
-        <LinkContent>{text}</LinkContent>
+        {children ? children : <LinkContent>{text}</LinkContent>}
       </StyledScrollLink>
     );
   }
+
   return (
-    <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to}>
-      <LinkContent>{text}</LinkContent>
+    <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to={to} isLogo={isLogo}>
+      {children ? children : <LinkContent>{text}</LinkContent>}
     </StyledDirectLink>
   );
 };
 
 const Navbar = ({ location }) => {
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleScroll = () => {
     if (window.scrollY > 50 && !scrolled) {
@@ -139,23 +162,16 @@ const Navbar = ({ location }) => {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <OuterWrapper scrolled={scrolled}>
       <Wrapper>
-        <StyledDirectLink paintDrip hex="#fefaf6" duration={0.8} to="/">
-          LOGO
-        </StyledDirectLink>
+        <Link to="/" internal={location === '/'} uri={location} id="top" isLogo>
+          <LogoImage />
+        </Link>
         <LinksWrapper>
-          <Link uri={location} id="work" to="/" text="Work" />
+          <Link uri={location} internal={location === '/'} id="work" to="/#work" text="Work" />
           <Link uri={location} id="about" to="/about" text="About" />
-          <Link uri={location} id="contact" to={location} text="Contact" />
+          <Link uri={location} internal id="contact" to={location} text="Contact" />
         </LinksWrapper>
       </Wrapper>
     </OuterWrapper>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { device } from 'consts/device';
 
@@ -18,10 +18,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const Image = ({ image }) => {
+const Image = ({ data }) => {
   return (
     <Wrapper>
-      <Img fluid={image.childImageSharp.fluid} alt="A picture of me hoarding registers" />
+      <GatsbyImage
+        image={data.file.childImageSharp.gatsbyImageData}
+        alt="A picture of me hoarding registers"
+      />
     </Wrapper>
   );
 };
@@ -70,15 +73,19 @@ const SectionContent = styled.div`
   & > :first-child {
     max-width: 580px;
     height: auto;
-    width: 100%;
-    margin: 0 auto;
     margin-bottom: 50px;
   }
   .gatsby-image-wrapper {
     border-radius: 10px;
     box-shadow: 0px 5px 15px -7px rgb(0 0 0 / 75%);
+    height: 200px;
   }
 
+  @media ${device.mobileL} {
+    .gatsby-image-wrapper {
+      height: auto;
+    }
+  }
   @media ${device.laptopM} {
     flex-direction: row;
     margin: 100px auto;
@@ -92,25 +99,42 @@ const SectionContent = styled.div`
 `;
 
 const Highlight = styled.h1`
-  font-size: 2.5em;
+  font-size: 1.8em;
   line-height: 1.5;
   margin-bottom: 25px;
+
+  @media ${device.mobileL} {
+    font-size: 2.2em;
+  }
+  @media ${device.tablet} {
+    font-size: 2.5em;
+  }
 `;
 
 const Info = styled.p`
   text-align: justify;
   line-height: 2;
   color: var(--gray);
-  font-size: 1.4em;
+  font-size: 1.3em;
   margin-bottom: 20px;
+  @media ${device.tablet} {
+    font-size: 1.4em;
+  }
 `;
 
 const About = ({ data }) => {
   return (
     <Section id="about">
       <Helmet htmlAttributes={{ lang: 'en' }} title="Gabrijel Golubic | About" />
+      <Helmet>
+        <title>Gabrijel Golubic | Software engineer | About</title>
+        <meta
+          name="description"
+          content="Welcome to my About section where you can find out some interesting things about my background :)"
+        />
+      </Helmet>
       <SectionContent>
-        <Image image={data.profileImage} />
+        <Image data={data} />
         <div>
           <Highlight>
             I’m Gabrijel, a software engineer working for{' '}
@@ -125,12 +149,12 @@ const About = ({ data }) => {
             past three years, I've been working as a software engineer.
           </Info>
           <Info>
-            These days I mostly spend my time researching new stuff, coding and helping out open
-            source libraries.
+            These days I mostly spend my time researching new stuff, coding and trying my best to
+            improve my padawans' skills.
           </Info>
           <Info>
-            Out of the office you’ll probably find me playing videogames, in the gym, enjoying food
-            and beer, and petting all the dogs.
+            Out of the office you’ll probably find me playing videogames, in the gym, enjoying food,
+            and petting all the dogs.
           </Info>
         </div>
       </SectionContent>
@@ -141,12 +165,10 @@ const About = ({ data }) => {
 export default About;
 
 export const query = graphql`
-  query ProfileImageQuery {
-    profileImage: file(relativePath: { eq: "pp.jpg" }) {
+  query AboutPageImageQuery {
+    file(relativePath: { eq: "pp.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 450, maxHeight: 350, quality: 100) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(layout: CONSTRAINED, formats: [AUTO, WEBP, AVIF])
       }
     }
   }

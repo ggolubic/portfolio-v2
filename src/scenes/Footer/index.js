@@ -56,7 +56,7 @@ const Footer = () => {
         <Form />
         <Text>Or reach out through social media.</Text>
         <Social />
-        <Copyright>© 2020 Gabrijel Golubic</Copyright>
+        <Copyright>©Gabrijel Golubic</Copyright>
       </Content>
     </Wrapper>
   );

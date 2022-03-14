@@ -1,6 +1,6 @@
+const React = require('react');
 const theme = require('./src/styles/theme').default;
 const ToastProvider = require('./src/common/Toast/ToastProvider').default;
-const React = require('react');
 
 exports.onInitialClientRender = () => {
   const root = document.documentElement;

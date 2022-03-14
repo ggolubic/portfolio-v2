@@ -7,7 +7,7 @@ import { PageContainer } from 'src/common/PageContainer';
 import { device } from 'src/consts/device';
 import caseStudiesData from 'src/data/caseStudies';
 
-const Content = styled.div`
+const Content = styled.section`
   width: 100%;
   margin: 0 auto;
   transition: all 0.35s ease;
@@ -162,7 +162,7 @@ const CaseStudies = () => {
   return (
     <PageContainer align="baseline" direction="column" id="work">
       <Header>Work</Header>
-      <Content>
+      <Content id="work">
         <CaseStudiesList>
           {caseStudiesData.map((caseStudy, i) => (
             <li key={i}>

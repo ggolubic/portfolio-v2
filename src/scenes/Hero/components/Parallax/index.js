@@ -40,6 +40,7 @@ const shadowsBig = getMultipleStars(100);
 
 const Wrapper = styled.div`
   position: absolute;
+  overflow: hidden;
   height: 100vh;
   width: 120%;
 `;
