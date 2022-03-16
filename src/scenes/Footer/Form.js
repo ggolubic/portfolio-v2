@@ -80,20 +80,11 @@ const Form = () => {
   const { setSuccessToast } = useToast();
   const { register, errors, reset, handleSubmit } = useForm({ mode: 'onSubmit' });
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&');
-  };
-
   const pushToNetlify = (data) => {
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'contact',
-        ...data,
-      }),
+      body: new URLSearchParams({ 'form-name': 'contact', ...data }).toString(),
     })
       .then(() => {
         reset();
@@ -142,7 +133,7 @@ const Form = () => {
         rows="5"
       />
       {errors?.message && <ErrorText>This field is required</ErrorText>}
-
+      <div data-netlify-recaptcha="true"></div>
       <StyledButton type="submit">SEND</StyledButton>
     </FormWrapper>
   );
