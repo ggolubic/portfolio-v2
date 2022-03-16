@@ -12,6 +12,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "lint": "eslint",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "prepare": "husky install"
   },
@@ -19,6 +20,7 @@
     "@mdx-js/loader": "1.6.22",
     "@mdx-js/mdx": "1.6.22",
     "@mdx-js/react": "1.6.22",
+    "@sentry/gatsby": "^6.18.2",
     "gatsby": "4.7.2",
     "gatsby-plugin-google-fonts": "1.0.1",
     "gatsby-plugin-image": "2.9.0",
@@ -42,13 +44,13 @@
     "styled-components": "5.2.0"
   },
   "devDependencies": {
-    "husky": "7.0.0",
     "babel-plugin-styled-components": "2.0.6",
     "eslint": "8.10.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "gatsby-plugin-root-import": "2.0.5",
     "gatsby-remark-copy-linked-files": "5.9.0",
+    "husky": "7.0.0",
     "prettier": "2.5.1"
   },
   "repository": {
