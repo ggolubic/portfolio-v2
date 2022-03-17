@@ -97,9 +97,11 @@ const Form = () => {
   };
 
   return (
-    <FormWrapper
+    <form
       name="contact"
-      method="POST"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
       netlify
       action={location.pathname}
       onSubmit={() => handleSubmit(pushToNetlify)}
@@ -138,7 +140,7 @@ const Form = () => {
       {errors?.message && <ErrorText>This field is required</ErrorText>}
       <div data-netlify-recaptcha="true"></div>
       <StyledButton type="submit">SEND</StyledButton>
-    </FormWrapper>
+    </form>
   );
 };
 
