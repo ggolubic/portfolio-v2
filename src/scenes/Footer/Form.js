@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from '@reach/router';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { animateScroll } from 'react-scroll';
@@ -77,6 +78,7 @@ const ErrorText = styled.span`
 `;
 
 const Form = () => {
+  const location = useLocation();
   const { setSuccessToast } = useToast();
   const { register, errors, reset, handleSubmit } = useForm({ mode: 'onSubmit' });
 
@@ -98,8 +100,9 @@ const Form = () => {
     <FormWrapper
       name="contact"
       method="POST"
-      data-nelify="true"
-      onSubmit={handleSubmit(pushToNetlify)}
+      netlify
+      action={location.pathname}
+      onSubmit={() => handleSubmit(pushToNetlify)}
     >
       <input type="hidden" name="form-name" value="contact" />
       <Label htmlFor="name">NAME</Label>
