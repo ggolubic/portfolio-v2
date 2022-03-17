@@ -7,14 +7,17 @@ import { animateScroll } from 'react-scroll';
 import useToast from 'common/Toast/useToast';
 import { device } from 'consts/device';
 
-const FormWrapper = styled.form`
-  display: flex;
-  padding: 20px;
-  flex-direction: column;
-  width: 85%;
-  margin: 0 auto;
-  @media ${device.tablet} {
-    width: 60%;
+const FormWrapper = styled.div`
+  form {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 85%;
+    margin: 0 auto;
+
+    @media ${device.tablet} {
+      width: 60%;
+    }
   }
 `;
 
@@ -97,50 +100,52 @@ const Form = () => {
   };
 
   return (
-    <form
-      name="contact"
-      method="post"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      netlify
-      action={location.pathname}
-      onSubmit={() => handleSubmit(pushToNetlify)}
-    >
-      <input type="hidden" name="form-name" value="contact" />
-      <Label htmlFor="name">NAME</Label>
-      <StyledInput
-        id="name"
-        {...register('name', {
-          required: { value: true, message: 'Your name is required.' },
-          min: { value: 3, message: 'Has to be at least 3 characters.' },
-        })}
-        aria-label="name"
-        aria-required="true"
-      />
-      {errors?.name && <ErrorText>{errors.name.message}</ErrorText>}
+    <FormWrapper>
+      <form
+        name="contact"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        netlify
+        action={location.pathname}
+        onSubmit={() => handleSubmit(pushToNetlify)}
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <Label htmlFor="name">NAME</Label>
+        <StyledInput
+          id="name"
+          {...register('name', {
+            required: { value: true, message: 'Your name is required.' },
+            min: { value: 3, message: 'Has to be at least 3 characters.' },
+          })}
+          aria-label="name"
+          aria-required="true"
+        />
+        {errors?.name && <ErrorText>{errors.name.message}</ErrorText>}
 
-      <Label htmlFor="email">EMAIL</Label>
-      <StyledInput
-        id="email"
-        {...register('email', { required: 'Your email is required' })}
-        aria-label="email"
-        aria-required="true"
-        type="email"
-      />
-      {errors?.email && <ErrorText>{errors.email.message}</ErrorText>}
+        <Label htmlFor="email">EMAIL</Label>
+        <StyledInput
+          id="email"
+          {...register('email', { required: 'Your email is required' })}
+          aria-label="email"
+          aria-required="true"
+          type="email"
+        />
+        {errors?.email && <ErrorText>{errors.email.message}</ErrorText>}
 
-      <Label htmlFor="message">MESSAGE</Label>
-      <StyledTextArea
-        id="message"
-        {...register('message', { required: true })}
-        aria-label="message"
-        aria-required="true"
-        rows="5"
-      />
-      {errors?.message && <ErrorText>This field is required</ErrorText>}
-      <div data-netlify-recaptcha="true"></div>
-      <StyledButton type="submit">SEND</StyledButton>
-    </form>
+        <Label htmlFor="message">MESSAGE</Label>
+        <StyledTextArea
+          id="message"
+          {...register('message', { required: true })}
+          aria-label="message"
+          aria-required="true"
+          rows="5"
+        />
+        {errors?.message && <ErrorText>This field is required</ErrorText>}
+        <div data-netlify-recaptcha="true"></div>
+        <StyledButton type="submit">SEND</StyledButton>
+      </form>
+    </FormWrapper>
   );
 };
 
