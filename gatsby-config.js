@@ -50,6 +50,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'work',
+        path: `${__dirname}/src/data/work`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-react-svg`,
       options: {
         rule: {
@@ -58,26 +65,8 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: 'work',
-        path: `${__dirname}/src/data/work`,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1200,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              quality: 80,
-            },
-          },
-        ],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-copy-linked-files`,
@@ -95,6 +84,13 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: '@sentry/gatsby',
+      options: {
+        dsn: 'https://89370393cf9b4dfd9e050f8f803f775d@o1167623.ingest.sentry.io/6258841',
+        sampleRate: 1.0, // Adjust this value in production
       },
     },
   ],
