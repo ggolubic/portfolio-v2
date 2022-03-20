@@ -2,7 +2,7 @@ const React = require('react');
 const theme = require('./src/styles/theme').default;
 const ToastProvider = require('./src/common/Toast/ToastProvider').default;
 
-exports.onInitialClientRender = () => {
+exports.onClientEntry = () => {
   const root = document.documentElement;
   root.style.setProperty('--primary-color', randomColor());
 };
