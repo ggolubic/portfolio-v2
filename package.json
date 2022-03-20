@@ -1,8 +1,8 @@
 {
   "name": "gabrijel-golubic-website",
   "private": true,
-  "description": "Gabrijels Site",
-  "version": "0.9.0",
+  "description": "My personal website",
+  "version": "1.0.0",
   "author": "Gabrijel Golubic <gabrijel.golubic@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,9 @@
     "@mdx-js/react": "1.6.22",
     "@sentry/gatsby": "^6.18.2",
     "gatsby": "4.7.2",
+    "gatsby-plugin-google-analytics": "^4.10.0",
     "gatsby-plugin-google-fonts": "1.0.1",
+    "gatsby-plugin-google-gtag": "^4.10.0",
     "gatsby-plugin-image": "2.9.0",
     "gatsby-plugin-mdx": "3.9.0",
     "gatsby-plugin-react-helmet": "5.9.0",
