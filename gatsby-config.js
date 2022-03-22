@@ -1,11 +1,22 @@
 const path = require('path');
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://ggolubic.com',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env;
+
+const isNetlifyProduction = NETLIFY_ENV === 'production';
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     title: 'Gabrijel Golubic',
     author: 'Gabrijel Golubic',
     description: 'Software engineer based in Split, Croatia',
+    siteUrl,
   },
   trailingSlash: 'never',
   flags: { FAST_DEV: true },
@@ -104,6 +115,55 @@ module.exports = {
         pluginConfig: {
           head: false,
           respectDNT: true,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        query: `
+        {
+          allSitePage {
+            nodes {
+              path
+            }
+          }
+        }
+      `,
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+          return allPages;
+        },
+        serialize: ({ path }) => {
+          return {
+            url: path,
+          };
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        host: 'https://ggolubic.com',
+        sitemap: 'https://ggolubic.com/sitemap/sitemap-index.xml',
+        env: {
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }],
+          },
+          development: {
+            policy: [{ userAgent: '*', disallow: '/' }],
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null,
+          },
         },
       },
     },
