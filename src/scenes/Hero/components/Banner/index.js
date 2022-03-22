@@ -80,10 +80,10 @@ const Headline = styled.div`
   & > h1 {
     font-size: 2.6em;
     @media ${device.mobileM} {
-      font-size: 2.8em;
+      font-size: 2.7em;
     }
     @media ${device.mobileL} {
-      font-size: 3.3em;
+      font-size: 3.1em;
     }
     @media ${device.tablet} {
       font-size: 5.5em;
@@ -96,16 +96,20 @@ const Headline = styled.div`
     }
   }
   & > h2 {
-    font-size: 2.4em;
+    font-size: 2.1em;
 
     @media ${device.mobileL} {
-      font-size: 2.8em;
+      font-size: 2.45em;
     }
     @media ${device.tablet} {
       font-size: 4.5em;
     }
     @media ${device.laptop} {
+      font-size: 3.4em;
       text-align: left;
+    }
+    @media ${device.laptopM} {
+      font-size: 4em;
     }
   }
 `;
